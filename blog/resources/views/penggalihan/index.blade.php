@@ -42,7 +42,7 @@
                     <hr>
                     <p>
                     </p>
-                    <h2>Data Penggalihan Penggalihan Bijih</h2>
+                    <h2>Data Penggalihan Bijih</h2>
                     <table class="table table-striped table-bordered table-hover table table-striped table-bordered table-hover" id="sample_1">
                         <thead>
                             <tr>
