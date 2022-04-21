@@ -1,0 +1,17 @@
+{
+    "name": "Sistem Informasi Produksi Bijih Bauksit",
+    "short_name": "SIP",
+    "start_url": "/index.php",
+    "background_color": "#6777ef",
+    "description": "",
+    "display": "fullscreen",
+    "theme_color": "#6777ef",
+    "icons": [
+        {
+            "src": "logo.PNG",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}
