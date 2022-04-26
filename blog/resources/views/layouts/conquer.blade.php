@@ -5,7 +5,7 @@
 
 <head>
 	<meta charset="utf-8" />
-	<title>Conquer | Data Tables - Managed Tables</title>
+	<title>Sistem Informasi Produksi Bijih Bauksit</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	<meta content="" name="description" />
@@ -585,21 +585,24 @@
 	<!-- END CORE PLUGINS -->
 	<script src="{{ asset('assets/scripts/app.js')}}"></script>
 	<script src="{{ asset('assets/plugins/jquery.editable.min.js')}}" type="text/javascript"></script>
-
-
 	<!-- BEGIN PAGE LEVEL PLUGINS -->
 	<script type="text/javascript" src="{{ asset('assets/plugins/select2/select2.min.js')}}"></script>
 	<script type="text/javascript" src="{{ asset('assets/plugins/datatables/media/js/jquery.dataTables.min.js')}}"></script>
 	<script type="text/javascript" src="{{ asset('assets/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js')}}"></script>
+	<script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
+	<script type="text/javascript" src="{{ asset('assets/plugins/gmaps/gmaps.js')}}"></script>
+	<script src="assets/plugins/gmaps/gmaps.js" type="text/javascript"></script>
+	<!-- END PAGE LEVEL PLUGINS -->
 	<!-- END PAGE LEVEL PLUGINS -->
 	<script src="assets/scripts/app.js"></script>
 	<script src="assets/scripts/table-managed.js"></script>
-	!-- script calendar -->
 	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
+	<script src="assets/scripts/app.js" type="text/javascript"></script>
+	<script src="assets/scripts/maps-google.js" type="text/javascript"></script>
 	<!-- BEGIN PAGE LEVEL SCRIPTS -->
 
 	<!-- <script>

@@ -212,19 +212,20 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<div class="content">
-    <div class="row">
         <div class="col-md-12">
-            <div class="portlet">
+            <!-- BEGIN MARKERS PORTLET-->
+            <div class="portlet yellow">
                 <div class="portlet-title">
-                    Peta riwayat lokasi pertambangan
+                    <div class="caption">
+                        Riwayat Lokasi Pertambangan
+                    </div>
                 </div>
                 <div class="portlet-body">
-                    <div id="map"></div>
+                    <div id="gmap_marker" class="gmaps">
+                    </div>
                 </div>
             </div>
+            <!-- END MARKERS PORTLET-->
         </div>
     </div>
 </div>
@@ -237,15 +238,20 @@
         TableManaged.init();
     });
 </script>
-
+<script>
+    jQuery(document).ready(function() {
+        App.init();
+        MapsGoogle.init();
+    });
+</script>
 <script src="{{ asset('/sw.js') }}"></script>
-	<script>
-		if (!navigator.serviceWorker.controller) {
-			navigator.serviceWorker.register("/sw.js").then(function(reg) {
-				console.log("Service worker has been registered for scope: " + reg.scope);
-			});
-		}
-	</script>
+<script>
+    if (!navigator.serviceWorker.controller) {
+        navigator.serviceWorker.register("/sw.js").then(function(reg) {
+            console.log("Service worker has been registered for scope: " + reg.scope);
+        });
+    }
+</script>
 <script type="text/javascript">
     var map = L.map('map').setView([-1.5127367, 119.2098285], 5);
 
@@ -253,15 +259,16 @@
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    var marker = L.marker([-6.6929291,106.8299996]).addTo(map);
-    
-    var lokasi = 
+    var marker = L.marker([-6.6929291, 106.8299996]).addTo(map);
 
-    for(var i=0; i<lokasi.lenght; i++){
-        marker = new L.marker([lokasi[i][1],lokasi[i][2]],{icon:iconYellow})
-        .bindPopup(lokasi[i][0])
-        .addTo(map);
-    }
+    var lokasi =
 
+        for (var i = 0; i < lokasi.lenght; i++) {
+            marker = new L.marker([lokasi[i][1], lokasi[i][2]], {
+                    icon: iconYellow
+                })
+                .bindPopup(lokasi[i][0])
+                .addTo(map);
+        }
 </script>
 @endsection
