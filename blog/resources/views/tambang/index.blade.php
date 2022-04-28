@@ -221,7 +221,8 @@
                     </div>
                 </div>
                 <div class="portlet-body">
-                    <div id="gmap_marker" class="gmaps">
+                    <div class="container mt-5">
+                        <div id="map"></div>
                     </div>
                 </div>
             </div>
@@ -244,7 +245,49 @@
         MapsGoogle.init();
     });
 </script>
-<script src="{{ asset('/sw.js') }}"></script>
+
+<script type="text/javascript">
+    function initMap() {
+        const myLatLng = {
+            lat: -0.4919327,
+            lng: 115.5330863
+        };
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 5,
+            center: myLatLng,
+        });
+
+        var locations = {
+            {
+                Js::from($locations)
+            }
+        };
+
+        var infowindow = new google.maps.InfoWindow();
+
+        var marker, i;
+
+        for (i = 0; i < locations.length; i++) {
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                map: map
+            });
+
+            google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                return function() {
+                    infowindow.setContent(locations[i][0]);
+                    infowindow.open(map, marker);
+                }
+            })(marker, i));
+
+        }
+    }
+
+    window.initMap = initMap;
+</script>
+
+<script type="text/javascript" src="https://maps.google.com/maps/api/js?key={{ env('GOOGLE_MAP_KEY') }}&callback=initMap"></script>
+<!-- <script src="{{ asset('/sw.js') }}"></script>
 <script>
     if (!navigator.serviceWorker.controller) {
         navigator.serviceWorker.register("/sw.js").then(function(reg) {
@@ -270,5 +313,5 @@
                 .bindPopup(lokasi[i][0])
                 .addTo(map);
         }
-</script>
+</script> -->
 @endsection

@@ -11,6 +11,7 @@
 	<meta content="" name="description" />
 	<meta content="" name="author" />
 	<meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- BEGIN GLOBAL MANDATORY STYLES -->
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
 	<link href="{{ asset('assets/plugins/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css" />
@@ -41,11 +42,12 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" />
 
 	<!-- Map -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<script src="http://maps.google.com/maps/api/js"></script>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script> -->
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
 	<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
 	<style type="text/css">
@@ -591,7 +593,7 @@
 	<script type="text/javascript" src="{{ asset('assets/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js')}}"></script>
 	<script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
 	<script type="text/javascript" src="{{ asset('assets/plugins/gmaps/gmaps.js')}}"></script>
-	<script src="assets/plugins/gmaps/gmaps.js" type="text/javascript"></script>
+	<!-- <script src="assets/plugins/gmaps/gmaps.js" type="text/javascript"></script> -->
 	<!-- END PAGE LEVEL PLUGINS -->
 	<!-- END PAGE LEVEL PLUGINS -->
 	<script src="assets/scripts/app.js"></script>
