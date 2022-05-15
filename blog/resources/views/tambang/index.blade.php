@@ -222,7 +222,7 @@
                 </div>
                 <div class="portlet-body">
                     <div class="container mt-5">
-                        <div id="map"></div>
+                        <div id="map" style="width: 500px; height: 400px;"></div>
                     </div>
                 </div>
             </div>
@@ -247,71 +247,35 @@
 </script>
 
 <script type="text/javascript">
-    function initMap() {
-        const myLatLng = {
-            lat: -0.4919327,
-            lng: 115.5330863
-        };
-        const map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 5,
-            center: myLatLng,
-        });
+    var locations = [
+      ['Tambang A', 0.3176578, 110.1059246],
+      ['Tambang B', 0.3272706, 110.0156307],
+      ['Tambang C', 0.3000198, 109.8166752],
+    ];
+    
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 10,
+      center: new google.maps.LatLng(0.9619, 114.5548),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+    
+    var infowindow = new google.maps.InfoWindow();
 
-        var locations = {
-            {
-                Js::from($locations)
-            }
-        };
-
-        var infowindow = new google.maps.InfoWindow();
-
-        var marker, i;
-
-        for (i = 0; i < locations.length; i++) {
-            marker = new google.maps.Marker({
-                position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                map: map
-            });
-
-            google.maps.event.addListener(marker, 'click', (function(marker, i) {
-                return function() {
-                    infowindow.setContent(locations[i][0]);
-                    infowindow.open(map, marker);
-                }
-            })(marker, i));
-
+    var marker, i;
+    
+    for (i = 0; i < locations.length; i++) {  
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map
+      });
+      
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(map, marker);
         }
+      })(marker, i));
     }
+  </script>
 
-    window.initMap = initMap;
-</script>
-
-<script type="text/javascript" src="https://maps.google.com/maps/api/js?key={{ env('GOOGLE_MAP_KEY') }}&callback=initMap"></script>
-<!-- <script src="{{ asset('/sw.js') }}"></script>
-<script>
-    if (!navigator.serviceWorker.controller) {
-        navigator.serviceWorker.register("/sw.js").then(function(reg) {
-            console.log("Service worker has been registered for scope: " + reg.scope);
-        });
-    }
-</script>
-<script type="text/javascript">
-    var map = L.map('map').setView([-1.5127367, 119.2098285], 5);
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-
-    var marker = L.marker([-6.6929291, 106.8299996]).addTo(map);
-
-    var lokasi =
-
-        for (var i = 0; i < lokasi.lenght; i++) {
-            marker = new L.marker([lokasi[i][1], lokasi[i][2]], {
-                    icon: iconYellow
-                })
-                .bindPopup(lokasi[i][0])
-                .addTo(map);
-        }
-</script> -->
 @endsection

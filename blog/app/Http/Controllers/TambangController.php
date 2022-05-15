@@ -123,12 +123,16 @@ class TambangController extends Controller
         }
     }
     public function gmaps(Tambang $tambang)
-
     {
-
     	$tambang->kordinat = $request->get('Kordinat');
 
     	return view('gmaps',compact('kordinat'));
 
+    }
+
+    public function lokasi()
+    {
+        $kordinat = DB::select(DB::raw("select kordinat from tambang"));
+        return view('tambang.index',compact('kordinat'));
     }
 }

@@ -1,0 +1,97 @@
+<!-- <script>
+    var map;
+    function initMap()
+    {
+        map = new google.maps.Map(document.getElementById('map'),
+        {
+            center: {lat:0.9619,lng:114.5548},
+            zoom:8
+        })
+
+        //marker
+        var marker = new google.maps.Marker({
+            position
+        })
+    }
+</script> -->
+
+<style>
+    #map {
+        height: 100%;
+    }
+
+    html.body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+</style>
+
+<!-- <script type="text/javascript">
+    function initMap() {
+        const myLatLng = {
+            lat: -0.4919327,
+            lng: 115.5330863
+        };
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 5,
+            center: myLatLng,
+        });
+
+        var locations = {
+            {
+                Js::from($locations)
+            }
+        };
+
+        var infowindow = new google.maps.InfoWindow();
+
+        var marker, i;
+
+        for (i = 0; i < locations.length; i++) {
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                map: map
+            });
+
+            google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                return function() {
+                    infowindow.setContent(locations[i][0]);
+                    infowindow.open(map, marker);
+                }
+            })(marker, i));
+
+        }
+    }
+
+    window.initMap = initMap;
+</script> -->
+
+
+<!-- <script src="{{ asset('/sw.js') }}"></script>
+<script>
+    if (!navigator.serviceWorker.controller) {
+        navigator.serviceWorker.register("/sw.js").then(function(reg) {
+            console.log("Service worker has been registered for scope: " + reg.scope);
+        });
+    }
+</script>
+<script type="text/javascript">
+    var map = L.map('map').setView([-1.5127367, 119.2098285], 5);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    var marker = L.marker([-6.6929291, 106.8299996]).addTo(map);
+
+    var lokasi =
+
+        for (var i = 0; i < lokasi.lenght; i++) {
+            marker = new L.marker([lokasi[i][1], lokasi[i][2]], {
+                    icon: iconYellow
+                })
+                .bindPopup(lokasi[i][0])
+                .addTo(map);
+        }
+</script> -->

@@ -32,6 +32,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('pits', 'PitWpController');
     Route::resource('ports', 'WpPortController');
 
+
     Route::post('rencana/action','RencanaKegiatanController@action')->name('rencana.action');
 });
 
