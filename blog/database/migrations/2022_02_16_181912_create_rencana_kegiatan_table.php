@@ -15,9 +15,9 @@ class CreateRencanaKegiatanTable extends Migration
     {
         Schema::create('rencana_kegiatan', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_kegiatan');
-            $table->date('tanggal_mulai');
-            $table->date('tanggal_akhir');
+            $table->string('title');
+            $table->dateTime('start');
+            $table->dateTime('end');
             $table->unsignedBigInteger('tambang_id');
             $table->foreign('tambang_id')->references('id')->on('tambang');
             $table->timestamps();

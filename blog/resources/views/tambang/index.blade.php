@@ -222,7 +222,7 @@
                 </div>
                 <div class="portlet-body">
                     <div class="container mt-5">
-                        <div id="map" style="width: 500px; height: 400px;"></div>
+                        <div id="map" style="width: 800px; height: 400px;"></div>
                     </div>
                 </div>
             </div>

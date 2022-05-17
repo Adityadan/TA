@@ -1,92 +1,6 @@
 @extends('layouts.conquer')
 
 @section('tempat_konten')
-<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
-<div class="modal fade" id="portlet-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                <h4 class="modal-title">Modal title</h4>
-            </div>
-            <div class="modal-body">
-                Widget settings form goes here
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success">Save changes</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
-<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
-<!-- BEGIN STYLE CUSTOMIZER -->
-<div class="theme-panel hidden-xs hidden-sm">
-    <div class="toggler">
-        <i class="fa fa-gear"></i>
-    </div>
-    <div class="theme-options">
-        <div class="theme-option theme-colors clearfix">
-            <span>
-                Theme Color </span>
-            <ul>
-                <li class="color-black current color-default tooltips" data-style="default" data-original-title="Default">
-                </li>
-                <li class="color-grey tooltips" data-style="grey" data-original-title="Grey">
-                </li>
-                <li class="color-blue tooltips" data-style="blue" data-original-title="Blue">
-                </li>
-                <li class="color-red tooltips" data-style="red" data-original-title="Red">
-                </li>
-                <li class="color-light tooltips" data-style="light" data-original-title="Light">
-                </li>
-            </ul>
-        </div>
-        <div class="theme-option">
-            <span>
-                Layout </span>
-            <select class="layout-option form-control input-small">
-                <option value="fluid" selected="selected">Fluid</option>
-                <option value="boxed">Boxed</option>
-            </select>
-        </div>
-        <div class="theme-option">
-            <span>
-                Header </span>
-            <select class="header-option form-control input-small">
-                <option value="fixed" selected="selected">Fixed</option>
-                <option value="default">Default</option>
-            </select>
-        </div>
-        <div class="theme-option">
-            <span>
-                Sidebar </span>
-            <select class="sidebar-option form-control input-small">
-                <option value="fixed">Fixed</option>
-                <option value="default" selected="selected">Default</option>
-            </select>
-        </div>
-        <div class="theme-option">
-            <span>
-                Sidebar Position </span>
-            <select class="sidebar-pos-option form-control input-small">
-                <option value="left" selected="selected">Left</option>
-                <option value="right">Right</option>
-            </select>
-        </div>
-        <div class="theme-option">
-            <span>
-                Footer </span>
-            <select class="footer-option form-control input-small">
-                <option value="fixed">Fixed</option>
-                <option value="default" selected="selected">Default</option>
-            </select>
-        </div>
-    </div>
-</div>
-<!-- END BEGIN STYLE CUSTOMIZER -->
 <!-- BEGIN PAGE HEADER-->
 <h3 class="page-title">
     Calendar <small>calendar page</small>
@@ -111,16 +25,100 @@
 <!-- BEGIN PAGE CONTENT-->
 <div class="row">
     <div class="col-md-12">
-        <div class="portlet calendar">
-            <div class="portlet-title">
-            </div>
-            <div class="portlet-body light-grey">
-                <div id="calendar"></div>
-            </div>
-            <!-- END CALENDAR PORTLET-->
+        <div class="container">
+            <div class="response"></div>
+            <div id='calendar'></div>
         </div>
     </div>
 </div>
 </div>
 <!-- END PAGE CONTENT-->
+
+
+@section('tempat_script')
+<script>
+    $(document).ready(function() {
+        var SITEURL = "{{ url('/') }}";
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        var calendar = $('#calendar').fullCalendar({
+            editable: true,
+            events: SITEURL + "fullcalendar",
+            displayEventTime: true,
+            editable: true,
+            eventRender: function(event, element, view) {
+                if (event.allDay === 'true') {
+                    event.allDay = true;
+                } else {
+                    event.allDay = false;
+                }
+            },
+            selectable: true,
+            selectHelper: true,
+            select: function(start, end, allDay) {
+                var title = prompt('Event Title:');
+                if (title) {
+                    var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
+                    var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
+                    $.ajax({
+                        url: SITEURL + "fullcalendar/create",
+                        data: 'title=' + title + '&start=' + start + '&end=' + end,
+                        type: "POST",
+                        success: function(data) {
+                            displayMessage("Added Successfully");
+                        }
+                    });
+                    calendar.fullCalendar('renderEvent', {
+                            title: title,
+                            start: start,
+                            end: end,
+                            allDay: allDay
+                        },
+                        true
+                    );
+                }
+                calendar.fullCalendar('unselect');
+            },
+            eventDrop: function(event, delta) {
+                var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
+                var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
+                $.ajax({
+                    url: SITEURL + 'fullcalendar/update',
+                    data: 'title=' + event.title + '&start=' + start + '&end=' + end + '&id=' + event.id,
+                    type: "POST",
+                    success: function(response) {
+                        displayMessage("Updated Successfully");
+                    }
+                });
+            },
+            eventClick: function(event) {
+                var deleteMsg = confirm("Do you really want to delete?");
+                if (deleteMsg) {
+                    $.ajax({
+                        type: "POST",
+                        url: SITEURL + 'fullcalendar/delete',
+                        data: "&id=" + event.id,
+                        success: function(response) {
+                            if (parseInt(response) > 0) {
+                                $('#calendar').fullCalendar('removeEvents', event.id);
+                                displayMessage("Deleted Successfully");
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    });
+
+    function displayMessage(message) {
+        $(".response").html("<div class='success'>" + message + "</div>");
+        setInterval(function() {
+            $(".success").fadeOut();
+        }, 1000);
+    }
+</script>
+@endsection
 @endsection
