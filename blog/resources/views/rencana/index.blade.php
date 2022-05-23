@@ -46,7 +46,7 @@
         });
         var calendar = $('#calendar').fullCalendar({
             editable: true,
-            events: SITEURL + "fullcalendar",
+            events: SITEURL + "rencana",
             displayEventTime: true,
             editable: true,
             eventRender: function(event, element, view) {
@@ -59,12 +59,12 @@
             selectable: true,
             selectHelper: true,
             select: function(start, end, allDay) {
-                var title = prompt('Event Title:');
+                var title = prompt('Nama Kegiatan:');
                 if (title) {
                     var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
                     var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
                     $.ajax({
-                        url: SITEURL + "fullcalendar/create",
+                        url: SITEURL + "rencana/create",
                         data: 'title=' + title + '&start=' + start + '&end=' + end,
                         type: "POST",
                         success: function(data) {
@@ -86,7 +86,7 @@
                 var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
                 var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
                 $.ajax({
-                    url: SITEURL + 'fullcalendar/update',
+                    url: SITEURL + 'rencana/update',
                     data: 'title=' + event.title + '&start=' + start + '&end=' + end + '&id=' + event.id,
                     type: "POST",
                     success: function(response) {
@@ -99,7 +99,7 @@
                 if (deleteMsg) {
                     $.ajax({
                         type: "POST",
-                        url: SITEURL + 'fullcalendar/delete',
+                        url: SITEURL + 'rencana/delete',
                         data: "&id=" + event.id,
                         success: function(response) {
                             if (parseInt(response) > 0) {

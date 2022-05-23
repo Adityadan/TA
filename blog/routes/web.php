@@ -25,7 +25,6 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('alats', 'AlatBeratController');
     Route::resource('bauksits', 'BauksitController');
     Route::resource('produksis', 'ProsesProduksiBauksitController');
-    Route::resource('rencanas', 'RencanaKegiatanController');
     Route::resource('tambangs', 'TambangController');
     Route::resource('penggalihans', 'PenggalihanBijihController');
     Route::resource('pengupasans', 'PengupasanTanahPucukController');

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\RencanaKegiatan;
-use Illuminate\Http\Request;
 use Redirect,Response;
+use Illuminate\Http\Request;
 class RencanaKegiatanController extends Controller
 {
     /**
