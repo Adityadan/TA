@@ -437,7 +437,9 @@
 						</span>
 						@endif
 						<i class="fa fa-angle-down"></i>
+
 					</a>
+
 					<ul class="dropdown-menu">
 						<li>
 							<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -463,14 +465,6 @@
 			<div class="page-sidebar navbar-collapse collapse">
 				<!-- BEGIN SIDEBAR MENU -->
 				<ul class="page-sidebar-menu">
-					<li class="sidebar-toggler-wrapper">
-						<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
-						<div class="sidebar-toggler">
-						</div>
-						<div class="clearfix">
-						</div>
-						<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
-					</li>
 					<li class="sidebar-search-wrapper">
 						<form class="search-form" role="form" action="index.html" method="get">
 							<div class="input-icon right">
@@ -607,7 +601,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
 
 	<script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
-	
+
 	<!-- BEGIN PAGE LEVEL SCRIPTS -->
 
 	<!-- <script>
