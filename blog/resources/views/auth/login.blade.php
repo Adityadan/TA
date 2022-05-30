@@ -3,7 +3,8 @@
 @section('content')
 
 <form method="POST" action="{{ route('login') }}">
-    <h3 class="form-title">Login to your account</h3>
+    <h3 class="form-title"><center>Login</center></h3>
+    <br>
     @csrf
     <div class="form-group">
         <label for="email" class="form-group">{{ __('E-Mail Address') }}</label>
@@ -35,26 +36,28 @@
 
     <div class="form-group">
         <div class="form-group">
-            <div class="form-check">
+            <!-- <div class="form-check">
                 <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                 <label class="form-check-label" for="remember">
                     {{ __('Remember Me') }}
                 </label>
-            </div>
+            </div> -->
         </div>
     </div>
 
     <div class="form-group row mb-0">
         <div class="col-md-8 offset-md-4">
+            <br>
+            <br>
             <button type="submit" class="btn btn-primary">
                 {{ __('Login') }}
             </button>
             <a class="btn btn-primary" href="{{ route('register') }}">{{ __('Register') }}</a>
             @if (Route::has('password.request'))
-            <a class="btn btn-link" href="{{ route('password.request') }}">
+            <!-- <a class="btn btn-link" href="{{ route('password.request') }}">
                 {{ __('Forgot Your Password?') }}
-            </a>
+            </a> -->
             @endif
         </div>
     </div>

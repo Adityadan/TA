@@ -73,10 +73,8 @@
 		<!-- BEGIN TOP NAVIGATION BAR -->
 		<div class="header-inner">
 			<!-- BEGIN LOGO -->
-			<div class="page-logo">
-				<a href="index.html">
-					<img src="{{ asset('assets/img/logo.png')}}" alt="logo" />
-				</a>
+			<div class="page-logo text-info">
+				<h6><strong>Sistem Informasi Produksi Bijih Bauksit</strong></h6>
 			</div>
 			<!-- END LOGO -->
 			<!-- BEGIN RESPONSIVE MENU TOGGLER -->

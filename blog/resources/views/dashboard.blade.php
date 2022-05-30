@@ -9,7 +9,7 @@
 
 @section('tempat_konten')
 <h3 class="page-title">
-    Welcome
+    Selamat Datang
 </h3>
 <div class="page-bar">
     <ul class="page-breadcrumb">

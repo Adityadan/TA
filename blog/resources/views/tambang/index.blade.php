@@ -248,6 +248,9 @@
 
 <script type="text/javascript">
     var locations = [
+        @foreach($data as $d)
+        ["{{$d->nama}}",{{$d->kordinat}}],
+        @endforeach
       ['Tambang A', 0.3176578, 110.1059246],
       ['Tambang B', 0.3272706, 110.0156307],
       ['Tambang C', 0.3000198, 109.8166752],
