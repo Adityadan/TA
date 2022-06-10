@@ -53,7 +53,7 @@ class TambangController extends Controller
         $data->digger = $request->get('Digger');
 
         $data->save();
-        return redirect()->route('tambangs.index')->with('status', 'Data Bauksit berhasil ditambah');
+        return redirect()->route('tambangs.index')->with('status', 'Data tambang berhasil ditambah');
     }
 
     /**

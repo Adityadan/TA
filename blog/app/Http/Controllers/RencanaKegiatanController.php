@@ -21,7 +21,7 @@ class RencanaKegiatanController extends Controller
          $end = (!empty($_GET["end"])) ? ($_GET["end"]) : ('');
  
          $data = RencanaKegiatan::whereDate('start', '>=', $start)->whereDate('end',   '<=', $end)->get(['id','title','start', 'end']);
-         return Response::json($data);
+         return Response()->json($data);
         }
         return view('rencana.index');
     }
@@ -38,7 +38,7 @@ class RencanaKegiatanController extends Controller
                        'end' => $request->end
                     ];
         $event = RencanaKegiatan::insert($insertArr);   
-        return Response::json($event);
+        return Response()->json($event);
     }
 
     /**
@@ -87,7 +87,7 @@ class RencanaKegiatanController extends Controller
         $updateArr = ['title' => $request->title,'start' => $request->start, 'end' => $request->end];
         $event  = RencanaKegiatan::where($where)->update($updateArr);
  
-        return Response::json($event);
+        return Response()->json($event);
     }
 
     /**
@@ -100,7 +100,7 @@ class RencanaKegiatanController extends Controller
     {
         $event = RencanaKegiatan::where('id',$request->id)->delete();
    
-        return Response::json($event);
+        return Response()->json($event);
     }
     // public function action(Request $request)
     // {

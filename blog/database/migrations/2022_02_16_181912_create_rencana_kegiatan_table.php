@@ -18,8 +18,6 @@ class CreateRencanaKegiatanTable extends Migration
             $table->string('title');
             $table->dateTime('start');
             $table->dateTime('end');
-            $table->unsignedBigInteger('tambang_id');
-            $table->foreign('tambang_id')->references('id')->on('tambang');
             $table->timestamps();
         });
     }
