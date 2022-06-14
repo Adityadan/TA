@@ -478,8 +478,8 @@
 							@yield('testingsidebar')
 						</a>
 					</li>
-					<li class="{{ Request::is('rencana') ? 'active' : '' }}">
-						<a href="{{ url('rencana') }}">
+					<li class="{{ Request::is('rencanas') ? 'active' : '' }}">
+						<a href="{{ url('rencanas') }}">
 							<i class="fa fa-calendar"></i>
 							<span class="title">Rencana Kegiatan</span>
 						</a>
@@ -625,114 +625,7 @@
 	</script>
 	@yield('tempat_script')
 	<!-- script calendar -->
-	<!-- <script>
-		$(document).ready(function() {
-
-			$.ajaxSetup({
-				headers: {
-					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-				}
-			});
-
-			var calendar = $('#calendar').fullCalendar({
-				editable: true,
-				header: {
-					left: 'prev,next today',
-					center: 'title',
-					right: 'month,agendaWeek,agendaDay'
-				},
-				events: '/rencana.index',
-				selectable: true,
-				selectHelper: true,
-				select: function(start, end, allDay) {
-					var nama_kegiatan = prompt('Masukkan Nama Kegiatan:');
-
-					if (nama_kegiatan) {
-						var tanggal_mulai = $.fullCalendar.formatDate(tanggal_mulai, 'Y-MM-DD HH:mm:ss');
-
-						var tanggal_akhir = $.fullCalendar.formatDate(tanggal_akhir, 'Y-MM-DD HH:mm:ss');
-
-						$.ajax({
-							url: "{{route('rencana.action')}}",
-							type: "POST",
-							data: {
-								nama_kegiatan: nama_kegiatan,
-								tanggal_mulai: tanggal_mulai,
-								tanggal_akhir: tanggal_akhir,
-								type: 'add'
-							},
-							success: function(data) {
-								calendar.fullCalendar('refetchEvents');
-								alert("Event Created Successfully");
-							}
-						})
-					}
-				},
-				editable: true,
-				eventResize: function(event, delta) {
-					var tanggal_mulai = $.fullCalendar.formatDate(event.tanggal_mulai, 'Y-MM-DD HH:mm:ss');
-					var tanggal_akhir = $.fullCalendar.formatDate(event.tanggal_akhir, 'Y-MM-DD HH:mm:ss');
-					var nama_kegiatan = event.nama_kegiatan;
-					var id = event.id;
-					$.ajax({
-						url: "{{route('rencana.action')}}",
-						type: "POST",
-						data: {
-							nama_kegiatan: nama_kegiatan,
-							tanggal_mulai: tanggal_mulai,
-							tanggal_akhir: tanggal_akhir,
-							id: id,
-							type: 'update'
-						},
-						success: function(response) {
-							calendar.fullCalendar('refetchEvents');
-							alert("Event Updated Successfully");
-						}
-					})
-				},
-				eventDrop: function(event, delta) {
-					var tanggal_mulai = $.fullCalendar.formatDate(event.tanggal_mulai, 'Y-MM-DD HH:mm:ss');
-					var tanggal_akhir = $.fullCalendar.formatDate(event.tanggal_akhir, 'Y-MM-DD HH:mm:ss');
-					var nama_kegiatan = event.nama_kegiatan;
-					var id = event.id;
-					$.ajax({
-						url: "{{route('rencana.action')}}",
-						type: "POST",
-						data: {
-							nama_kegiatan: nama_kegiatan,
-							tanggal_mulai: tanggal_mulai,
-							tanggal_akhir: tanggal_akhir,
-							id: id,
-							type: 'update'
-						},
-						success: function(response) {
-							calendar.fullCalendar('refetchEvents');
-							alert("Event Updated Successfully");
-						}
-					})
-				},
-
-				eventClick: function(event) {
-					if (confirm("Are you sure you want to remove it?")) {
-						var id = event.id;
-						$.ajax({
-							url: "{{route('rencana.action')}}",
-							type: "POST",
-							data: {
-								id: id,
-								type: "delete"
-							},
-							success: function(response) {
-								calendar.fullCalendar('refetchEvents');
-								alert("Event Deleted Successfully");
-							}
-						})
-					}
-				}
-			});
-
-		});
-	</script> -->
+	
 </body>
 <!-- END BODY -->
 

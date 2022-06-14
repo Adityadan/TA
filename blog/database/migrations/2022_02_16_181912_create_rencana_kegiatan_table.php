@@ -15,9 +15,13 @@ class CreateRencanaKegiatanTable extends Migration
     {
         Schema::create('rencana_kegiatan', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->dateTime('start');
-            $table->dateTime('end');
+            $table->string('kegiatan');
+            $table->string('musim');
+            $table->dateTime('mulai');
+            $table->dateTime('akhir');
+            $table->integer('durasi');
+            $table->integer('presentase selesai');
+            $table->string('ketergantungan');
             $table->timestamps();
         });
     }

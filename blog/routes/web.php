@@ -30,14 +30,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('pengupasans', 'PengupasanTanahPucukController');
     Route::resource('pits', 'PitWpController');
     Route::resource('ports', 'WpPortController');
-
-    Route::get('rencana', 'RencanaKegiatanController@index');
-    Route::post('rencana/create', 'RencanaKegiatanController@create');
-    Route::post('rencana/update', 'RencanaKegiatanController@update');
-    Route::post('rencana/delete', 'RencanaKegiatanController@destroy');
-
-
-    Route::post('rencana/action', 'RencanaKegiatanController@action')->name('rencana.action');
+    Route::resource('rencanas', 'RencanaKegiatanController');
 });
 
 

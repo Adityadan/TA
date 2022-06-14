@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\RencanaKegiatan;
-use Redirect,Response;
+use App\Tambang;
 use Illuminate\Http\Request;
+
 class RencanaKegiatanController extends Controller
 {
     /**
@@ -14,16 +15,9 @@ class RencanaKegiatanController extends Controller
      */
     public function index()
     {
-        if(request()->ajax()) 
-        {
- 
-         $start = (!empty($_GET["start"])) ? ($_GET["start"]) : ('');
-         $end = (!empty($_GET["end"])) ? ($_GET["end"]) : ('');
- 
-         $data = RencanaKegiatan::whereDate('start', '>=', $start)->whereDate('end',   '<=', $end)->get(['id','title','start', 'end']);
-         return Response()->json($data);
-        }
-        return view('rencana.index');
+        $data_rencana = RencanaKegiatan::all();
+        $data_tambang = Tambang::all();
+        return view('rencana.index',compact('data_rencana','data_tambang'));
     }
 
     /**
@@ -31,14 +25,9 @@ class RencanaKegiatanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
-        $insertArr = [ 'title' => $request->title,
-                       'start' => $request->start,
-                       'end' => $request->end
-                    ];
-        $event = RencanaKegiatan::insert($insertArr);   
-        return Response()->json($event);
+        //
     }
 
     /**
@@ -49,27 +38,30 @@ class RencanaKegiatanController extends Controller
      */
     public function store(Request $request)
     {
-        
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\RencanaKegiatan  $rencanaKegiatan
+     * @param  \App\Models\RencanaKegiatan  $rencanakegiatan
      * @return \Illuminate\Http\Response
      */
-    public function show(RencanaKegiatan $rencanaKegiatan)
+    public function show(RencanaKegiatan $rencanakegiatan)
     {
-        //
+        
+        $data_rencana = RencanaKegiatan::all();
+        $data_tambang = Tambang::all();
+        return view('rencana.show',compact('data_rencana','data_tambang'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\RencanaKegiatan  $rencanaKegiatan
+     * @param  \App\Models\RencanaKegiatan  $rencanakegiatan
      * @return \Illuminate\Http\Response
      */
-    public function edit(RencanaKegiatan $rencanaKegiatan)
+    public function edit(RencanaKegiatan $rencanakegiatan)
     {
         //
     }
@@ -78,62 +70,22 @@ class RencanaKegiatanController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\RencanaKegiatan  $rencanaKegiatan
+     * @param  \App\Models\RencanaKegiatan  $rencanakegiatan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, RencanaKegiatan $rencanakegiatan)
     {
-        $where = array('id' => $request->id);
-        $updateArr = ['title' => $request->title,'start' => $request->start, 'end' => $request->end];
-        $event  = RencanaKegiatan::where($where)->update($updateArr);
- 
-        return Response()->json($event);
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\RencanaKegiatan  $rencanaKegiatan
+     * @param  \App\Models\RencanaKegiatan  $rencanakegiatan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy(RencanaKegiatan $rencanakegiatan)
     {
-        $event = RencanaKegiatan::where('id',$request->id)->delete();
-   
-        return Response()->json($event);
+        //
     }
-    // public function action(Request $request)
-    // {
-    // 	if($request->ajax())
-    // 	{
-    // 		if($request->type == 'add')
-    // 		{
-    // 			$event = RencanaKegiatan::create([
-    // 				'nama_kegiatan'		=>	$request->nama_kegiatan,
-    // 				'tanggal_mulai'		=>	$request->tanggal_mulai,
-    // 				'tanggal_akhir'		=>	$request->tanggal_akhir
-    // 			]);
-
-    // 			return response()->json($event);
-    // 		}
-
-    // 		if($request->type == 'update')
-    // 		{
-    // 			$event = RencanaKegiatan::find($request->id)->update([
-    // 				'nama_kegiatan'		=>	$request->nama_kegiatan,
-    // 				'tanggal_mulai'		=>	$request->tanggal_mulai,
-    // 				'tanggal_akhir'		=>	$request->tanggal_akhir
-    // 			]);
-
-    // 			return response()->json($event);
-    // 		}
-
-    // 		if($request->type == 'delete')
-    // 		{
-    // 			$event = RencanaKegiatan::find($request->id)->delete();
-
-    // 			return response()->json($event);
-    // 		}
-    // 	}
-    // }
 }
