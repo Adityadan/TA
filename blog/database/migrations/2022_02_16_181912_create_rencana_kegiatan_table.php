@@ -20,8 +20,10 @@ class CreateRencanaKegiatanTable extends Migration
             $table->dateTime('mulai');
             $table->dateTime('akhir');
             $table->integer('durasi');
-            $table->integer('presentase selesai');
+            $table->integer('presentase');
             $table->string('ketergantungan');
+            $table->unsignedBigInteger('tambang_id');
+            $table->foreign('tambang_id')->references('id')->on('tambang');
             $table->timestamps();
         });
     }
