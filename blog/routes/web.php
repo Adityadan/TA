@@ -31,10 +31,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('pits', 'PitWpController');
     Route::resource('ports', 'WpPortController');
     Route::resource('rencanas', 'RencanaKegiatanController');
+    Route::resource('laporans', 'LaporanController');
 });
-
-
-
 
 
 

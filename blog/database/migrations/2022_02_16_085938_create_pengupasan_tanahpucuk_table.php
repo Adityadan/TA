@@ -22,7 +22,6 @@ class CreatePengupasanTanahpucukTable extends Migration
             $table->double('jumlah_bcm',8,2);
             $table->double('jumlah_ton',8,2);
             $table->double('berat_jenis_material',8,2);
-            $table->double('total',8,2);
             $table->integer('keteragan');
             $table->integer('alat_gali_muat');
             $table->integer('alat_dorong');

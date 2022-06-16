@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\PengupasanTanahPucuk;
 use App\Tambang;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PengupasanTanahPucukController extends Controller
 {
@@ -15,9 +16,12 @@ class PengupasanTanahPucukController extends Controller
      */
     public function index()
     {
+        
+        $total_bcm = DB::table('pengupasan_tanahpucuk')->sum('jumlah_bcm');
+        $total_ton = DB::table('pengupasan_tanahpucuk')->sum('jumlah_ton');
         $data = PengupasanTanahPucuk::all();
         $data_tambang = Tambang::all();
-        return view('pengupasan.index', compact('data','data_tambang'));
+        return view('pengupasan.index', compact('total_bcm','total_ton','data','data_tambang'));
     }
 
     /**

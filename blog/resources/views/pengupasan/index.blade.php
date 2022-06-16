@@ -16,6 +16,32 @@
         </li>
     </ul>
 </div>
+<div class="row stats-overview-cont">
+    <div class="col-md-2 col-sm-4">
+        <div class="stats-overview stat-block">
+            <div class="details">
+                <div class="title">
+                    TOTAL BCM
+                </div>
+                <div class="numbers">
+                    {{$total_bcm}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-4">
+        <div class="stats-overview stat-block">
+            <div class="details">
+                <div class="title">
+                    TOTAL TON
+                </div>
+                <div class="numbers">
+                    {{$total_ton}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="content">
     <div class="row">
         <div class="col-md-12">
@@ -39,195 +65,224 @@
                     <a href="#modalladd" class="btn btn-primary" data-toggle="modal">
                         Tambah Data pengupasan tanah pucuk
                     </a>
-                    <hr>
-                    <p>
-                    </p>
                     <h2>Data Kegiatan Pengupasan Tanah Pucuk</h2>
-                    <table class="table table-striped table-bordered table-hover table table-striped table-bordered table-hover" id="sample_1">
-                        <thead>
-                            <tr>
-                                <th>tahun_rencana</th>
-                                <th>tahun_realisasi</th>
-                                <th>lokasi</th>
-                                <th>bulan</th>
-                                <th>Detail Data</th>
-                                <th>Opsi Data</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($data as $d)
-                            <tr>
-                                <td>
-                                    {{$d->tahun_rencana}}
-                                </td>
-                                <td>
-                                    {{$d->tahun_realisasi}}
-                                </td>
-                                <td>
-                                    {{$d->lokasi}}
-                                </td>
-                                <td>
-                                    {{$d->bulan}}
-                                </td>
-                                <td>
-                                    <a href="#modalDetail_{{ $d->id }}" class="btn btn-info" data-toggle="modal">
-                                        Detail
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="{{url('pengupasans/'.$d->id.'/edit')}}" class="btn btn-warning">edit</a>
-                                    <br><br>
-                                    <form method="POST" action="{{ url('pengupasans/'.$d->id)}}">
-                                        @csrf
-                                        @method('DELETE')
-                                        <input type="submit" value="delete" class="btn btn-danger btx-xs" onclick="if(!confirm('apakah anda yakin?'))
-                                    return false;" />
-                                    </form>
-                                </td>
-                            </tr>
 
-                            <!-- Modal Detail -->
-                            <div class="modal fade" id="modalDetail_{{ $d->id }}" tabindex="-1" role="basic" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                                            <h4 class="modal-title">form tambah pengupasan tanah pucuk</h4>
-                                        </div>
-                                        <form action="#" class="form-horizontal form-bordered form-row-stripped">
-                                            <div class="form-group row">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-3">tahun rencana</label>
-                                                    <div class="col-md-3">
-                                                        <label>{{ $d->tahun_rencana }}</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-3">tahun realisasi</label>
-                                                    <div class="col-md-3">
-                                                        <label>{{ $d->tahun_realisasi }}</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-3">lokasi</label>
-                                                    <div class="col-md-3">
-                                                        <label>{{ $d->lokasi }}</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-3">bulan</label>
-                                                    <div class="col-md-3">
-                                                        <label>{{ $d->bulan }}</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-3">jumlah bcm</label>
-                                                    <div class="col-md-3">
-                                                        <label>{{ $d->jumlah_bcm }}</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-3">jumlah ton</label>
-                                                    <div class="col-md-3">
-                                                        <label>{{ $d->jumlah_ton }}</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-3">berat jenis material</label>
-                                                    <div class="col-md-3">
-                                                        <label>{{ $d->berat_jenis_material }}</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-3">total</label>
-                                                    <div class="col-md-3">
-                                                        <label>{{ $d->total }}</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-3">keterangan</label>
-                                                    <div class="col-md-3">
-                                                        <label>{{ $d->keteragan }}</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-3">jumlah alat gali muat</label>
-                                                    <div class="col-md-3">
-                                                        <label>{{ $d->alat_gali_muat }}</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-3">jumlah alah dorong</label>
-                                                    <div class="col-md-3">
-                                                        <label>{{ $d->alat_dorong }}</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-3">jumlah alat bongkar</label>
-                                                    <div class="col-md-3">
-                                                        <label>{{ $d->alat_bongkar }}</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-3">alat angkut</label>
-                                                    <div class="col-md-3">
-                                                        <label>{{ $d->alat_angkut }}</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-3">satuan</label>
-                                                    <div class="col-md-3">
-                                                        <label>{{ $d->satuan }}</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-3">pertambangan</label>
-                                                    <div class="col-md-3">
-                                                        <label>{{ $d->tambang->nama }}</label>
-                                                    </div>
-                                                </div>
-                                            </div>
+                    <div class="table-scrollable">
+
+                        <table class="table table-striped table-bordered table-hover table table-striped table-bordered table-hover" id="sample_1">
+                            <thead>
+                                <tr>
+                                    <th>tahun_rencana</th>
+                                    <th>tahun_realisasi</th>
+                                    <th>lokasi</th>
+                                    <th>bulan</th>
+                                    <th>jumlah bcm</th>
+                                    <th>jumlah ton</th>
+                                    <th>berat jenis material</th>
+                                    <th>keterangan</th>
+                                    <th>jumlah alat gali muat</th>
+                                    <th>jumlah alat dorong</th>
+                                    <th>jumlah alat bongkar</th>
+                                    <th>jumlah alat angkut</th>
+                                    <th>jarak angkut</th>
+                                    <th>satuan</th>
+                                    <th>kode tambang</th>
+                                    <th>Opsi Data</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($data as $d)
+                                <tr>
+                                    <td>
+                                        {{$d->tahun_rencana}}
+                                    </td>
+                                    <td>
+                                        {{$d->tahun_realisasi}}
+                                    </td>
+                                    <td>
+                                        {{$d->lokasi}}
+                                    </td>
+                                    <td>
+                                        {{$d->bulan}}
+                                    </td>
+                                    <td>
+                                        {{$d->jumlah_bcm}}
+                                    </td>
+                                    <td>
+                                        {{$d->jumlah_ton}}
+                                    </td>
+                                    <td>
+                                        {{$d->berat_jenis_material}}
+                                    </td>
+                                    <td>
+                                        {{$d->keteragan}}
+                                    </td>
+                                    <td>
+                                        {{$d->alat_gali_muat}}
+                                    </td>
+                                    <td>
+                                        {{$d->alat_dorong}}
+                                    </td>
+                                    <td>
+                                        {{$d->alat_bongkar}}
+                                    </td>
+                                    <td>
+                                        {{$d->alat_angkut}}
+                                    </td>
+                                    <td>
+                                        {{$d->jarak_angkut}}
+                                    </td>
+                                    <td>
+                                        {{$d->satuan}}
+                                    </td>
+                                    <td>
+                                        {{$d->tambang_id}}
+                                    </td>
+                                    <td>
+                                        <a href="{{url('pengupasans/'.$d->id.'/edit')}}" class="btn btn-warning">edit</a>
+                                        <br><br>
+                                        <form method="POST" action="{{ url('pengupasans/'.$d->id)}}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <input type="submit" value="delete" class="btn btn-danger btx-xs" onclick="if(!confirm('apakah anda yakin?'))
+                                    return false;" />
                                         </form>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            <a href="{{url('tambangs/'.$d->id.'/edit')}}" class="btn btn-warning">edit</a>
+                                    </td>
+                                </tr>
+
+                                <!-- Modal Detail -->
+                                <div class="modal fade" id="modalDetail_{{ $d->id }}" tabindex="-1" role="basic" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                                <h4 class="modal-title">form tambah pengupasan tanah pucuk</h4>
+                                            </div>
+                                            <form action="#" class="form-horizontal form-bordered form-row-stripped">
+                                                <div class="form-group row">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">tahun rencana</label>
+                                                        <div class="col-md-3">
+                                                            <label>{{ $d->tahun_rencana }}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">tahun realisasi</label>
+                                                        <div class="col-md-3">
+                                                            <label>{{ $d->tahun_realisasi }}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">lokasi</label>
+                                                        <div class="col-md-3">
+                                                            <label>{{ $d->lokasi }}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">bulan</label>
+                                                        <div class="col-md-3">
+                                                            <label>{{ $d->bulan }}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">jumlah bcm</label>
+                                                        <div class="col-md-3">
+                                                            <label>{{ $d->jumlah_bcm }}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">jumlah ton</label>
+                                                        <div class="col-md-3">
+                                                            <label>{{ $d->jumlah_ton }}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">berat jenis material</label>
+                                                        <div class="col-md-3">
+                                                            <label>{{ $d->berat_jenis_material }}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">keterangan</label>
+                                                        <div class="col-md-3">
+                                                            <label>{{ $d->keteragan }}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">jumlah alat gali muat</label>
+                                                        <div class="col-md-3">
+                                                            <label>{{ $d->alat_gali_muat }}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">jumlah alah dorong</label>
+                                                        <div class="col-md-3">
+                                                            <label>{{ $d->alat_dorong }}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">jumlah alat bongkar</label>
+                                                        <div class="col-md-3">
+                                                            <label>{{ $d->alat_bongkar }}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">alat angkut</label>
+                                                        <div class="col-md-3">
+                                                            <label>{{ $d->alat_angkut }}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">satuan</label>
+                                                        <div class="col-md-3">
+                                                            <label>{{ $d->satuan }}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3">pertambangan</label>
+                                                        <div class="col-md-3">
+                                                            <label>{{ $d->tambang->nama }}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                <a href="{{url('tambangs/'.$d->id.'/edit')}}" class="btn btn-warning">edit</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
-
-                            @endforeach
-                        </tbody>
-                    </table>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -299,12 +354,6 @@
                         <label for="BeratJenisMaterial" class="col-sm-2 col-form-label">berat jenis material</label>
                         <div class="col-sm-10">
                             <input type="text" value="" name="BeratJenisMaterial" class="form-control" id="BeratJenisMaterial" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="Total" class="col-sm-2 col-form-label">total</label>
-                        <div class="col-sm-10">
-                            <input type="text" value="" name="Total" class="form-control" id="Total" required>
                         </div>
                     </div>
                     <div class="form-group row">

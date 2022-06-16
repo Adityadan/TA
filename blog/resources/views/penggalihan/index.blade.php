@@ -16,6 +16,44 @@
         </li>
     </ul>
 </div>
+<div class="row stats-overview-cont">
+    <div class="col-md-2 col-sm-4">
+        <div class="stats-overview stat-block">
+            <div class="details">
+                <div class="title">
+                    TOTAL Brutto
+                </div>
+                <div class="numbers">
+                    {{$total_brutto}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-4">
+        <div class="stats-overview stat-block">
+            <div class="details">
+                <div class="title">
+                    Recovery Penambangan
+                </div>
+                <div class="numbers">
+                    {{$maxrecovery}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-4">
+        <div class="stats-overview stat-block">
+            <div class="details">
+                <div class="title">
+                    total nett tonase
+                </div>
+                <div class="numbers">
+                    {{$total_nett}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="content">
     <div class="row">
         <div class="col-md-12">
@@ -50,7 +88,13 @@
                                 <th>realisasi tahun</th>
                                 <th>lokasi</th>
                                 <th>blok</th>
-                                <th>Detail Data</th>
+                                <th>pit</th>
+                                <th>cut of grade Ni</th>
+                                <th>bulan</th>
+                                <th>total brutto</th>
+                                <th>recovery penambangan</th>
+                                <th>total nett</th>
+                                <th>kode tambang</th>
                                 <th>Opsi Data</th>
                             </tr>
                         </thead>
@@ -70,10 +114,31 @@
                                     {{$d->blok}}
                                 </td>
                                 <td>
+                                    {{$d->pit}}
+                                </td>
+                                <td>
+                                    {{$d->cutofgrade_ni}}
+                                </td>
+                                <td>
+                                    {{$d->bulan}}
+                                </td>
+                                <td>
+                                    {{$d->total_brutto}}
+                                </td>
+                                <td>
+                                    {{$d->recovery_pertambangan}}
+                                </td>
+                                <td>
+                                    {{$d->total_nett}}
+                                </td>
+                                <td>
+                                    {{$d->tambang_id}}
+                                </td>
+                                <!-- <td>
                                     <a href="#modalDetail_{{ $d->id }}" class="btn btn-info" data-toggle="modal">
                                         Detail
                                     </a>
-                                </td>
+                                </td> -->
                                 <td>
                                     <a href="{{url('penggalihans/'.$d->id.'/edit')}}" class="btn btn-warning">edit</a>
                                     <a href="#modaledit{{ $d->id }}" class="btn btn-info" data-toggle="modal">
@@ -164,14 +229,6 @@
                                             </div>
                                             <div class="form-group row">
                                                 <div class="form-group">
-                                                    <label class="control-label col-md-3">waktu pengerjaan</label>
-                                                    <div class="col-md-3">
-                                                        <label>{{ $d->total }}</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="form-group">
                                                     <label class="control-label col-md-3">kapasitas</label>
                                                     <div class="col-md-3">
                                                         <label>{{ $d->total_brutto }}</label>
@@ -180,7 +237,7 @@
                                             </div>
                                             <div class="form-group row">
                                                 <div class="form-group">
-                                                    <label class="control-label col-md-3">DT need</label>
+                                                    <label class="control-label col-md-3"></label>
                                                     <div class="col-md-3">
                                                         <label>{{ $d->recovery_pertambangan }}</label>
                                                     </div>
@@ -276,18 +333,6 @@
                                                             <option value="november">november</option>
                                                             <option value="desember">desember</option>
                                                         </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="TotalBulan" class="col-sm-2 col-form-label">total perbulan</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="text" value="{{$d->total_bulan}}" name="TotalBulan" class="form-control" id="TotalBulan" required>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="Total" class="col-sm-2 col-form-label">total keseluruhan</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="text" value="{{$d->total}}" name="Total" class="form-control" id="Total" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -418,18 +463,6 @@
                                 <option value="november">november</option>
                                 <option value="desember">desember</option>
                             </select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="TotalBulan" class="col-sm-2 col-form-label">total perbulan</label>
-                        <div class="col-sm-10">
-                            <input type="text" value="" name="TotalBulan" class="form-control" id="TotalBulan" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="Total" class="col-sm-2 col-form-label">total</label>
-                        <div class="col-sm-10">
-                            <input type="text" value="" name="Total" class="form-control" id="Total" required>
                         </div>
                     </div>
                     <div class="form-group row">

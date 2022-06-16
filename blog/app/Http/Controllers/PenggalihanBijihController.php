@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\PenggalihanBijih;
 use App\Tambang;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PenggalihanBijihController extends Controller
 {
@@ -15,9 +16,12 @@ class PenggalihanBijihController extends Controller
      */
     public function index()
     {
+        $total_brutto = DB::table('penggalihan_bijih')->sum('total_brutto');
+        $maxrecovery = DB::table('penggalihan_bijih')->max('recovery_pertambangan');
+        $total_nett = DB::table('penggalihan_bijih')->sum('total_nett');
         $data = PenggalihanBijih::all();
         $data_tambang = Tambang::all();
-        return view('penggalihan.index', compact('data','data_tambang'));
+        return view('penggalihan.index', compact('total_brutto','maxrecovery','total_nett','data','data_tambang'));
     }
 
     /**
@@ -47,8 +51,6 @@ class PenggalihanBijihController extends Controller
         $data->pit = $request->get('Pit');
         $data->cutofgrade_ni = $request->get('CutofgradeNi');
         $data->bulan = $request->get('Bulan');
-        $data->total_bulan = $request->get('TotalBulan');
-        $data->total = $request->get('Total');
         $data->total_brutto = $request->get('Total_brutto');
         $data->recovery_pertambangan = $request->get('Recovery_pertambangan');
         $data->total_nett = $request->get('Total_nett');
@@ -98,8 +100,6 @@ class PenggalihanBijihController extends Controller
         $penggalihanBijih->pit = $request->get('Pit');
         $penggalihanBijih->cutofgrade_ni = $request->get('CutofgradeNi');
         $penggalihanBijih->bulan = $request->get('Bulan');
-        $penggalihanBijih->total_bulan = $request->get('TotalBulan');
-        $penggalihanBijih->total = $request->get('Total');
         $penggalihanBijih->total_brutto = $request->get('Total_brutto');
         $penggalihanBijih->recovery_pertambangan = $request->get('Recovery_pertambangan');
         $penggalihanBijih->total_nett = $request->get('Total_nett');

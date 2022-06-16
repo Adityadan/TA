@@ -97,7 +97,6 @@ class RencanaKegiatanController extends Controller
         $rencanakegiatan->presentase = $request->get('presentase');
         $rencanakegiatan->ketergantungan = $request->get('ketergantungan');
         $rencanakegiatan->tambang_id = $request->get('tambang_id');
-
         $rencanakegiatan->save();
         return redirect()->route('rencanas.index')->with('status', 'Data Rencana Kegiatan berhasil ditambah');
     }

@@ -478,16 +478,16 @@
 							@yield('testingsidebar')
 						</a>
 					</li>
-					<li class="{{ Request::is('rencanas') ? 'active' : '' }}">
-						<a href="{{ url('rencanas') }}">
-							<i class="fa fa-calendar"></i>
-							<span class="title">Rencana Kegiatan</span>
-						</a>
-					</li>
 					<li class="{{ Request::is('tambangs') ? 'active' : '' }}">
 						<a href="{{ url('tambangs') }}">
 							<i class="fa fa-building"></i>
 							<span class="title">Pertambangan</span>
+						</a>
+					</li>
+					<li class="{{ Request::is('rencanas') ? 'active' : '' }}">
+						<a href="{{ url('rencanas') }}">
+							<i class="fa fa-calendar"></i>
+							<span class="title">Rencana Kegiatan</span>
 						</a>
 					</li>
 					<li class="{{ Request::is('bauksits') ? 'active' : '' }}">
@@ -530,6 +530,12 @@
 						<a href="{{ url('karyawans') }}">
 							<i class="fa fa-users"></i>
 							<span class="title">Karyawan</span>
+						</a>
+					</li>
+					<li class="{{ Request::is('laporans') ? 'active' : '' }}">
+						<a href="{{ url('laporans') }}">
+							<i class="fa  fa-exclamation-triangle"></i>
+							<span class="title">Laporan Permasalahan</span>
 						</a>
 					</li>
 				</ul>
