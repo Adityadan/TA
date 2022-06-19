@@ -28,6 +28,7 @@ class CreateTambangTable extends Migration
             $table->string('cuaca');
             $table->string('logger');
             $table->string('digger');
+            $table->string('landowner');
             $table->timestamps();
         });
     }

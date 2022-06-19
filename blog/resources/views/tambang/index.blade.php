@@ -31,6 +31,11 @@
                         {{session('status')}}
                     </div>
                     @endif
+                    @if(session('eror'))
+                    <div class="alert alert-danger">
+                        {{session('eror')}}
+                    </div>
+                    @endif
                     <a href="{{route('tambangs.create') }}" class="btn btn-primary">
                         + Tambah Data Kegiatan Pertambagan
                     </a>
@@ -195,6 +200,14 @@
                                                     <label class="control-label col-md-3">digger</label>
                                                     <div class="col-md-3">
                                                         <label>{{ $d->digger }}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-body">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3">land owner</label>
+                                                    <div class="col-md-3">
+                                                        <label>{{ $d->landowner }}</label>
                                                     </div>
                                                 </div>
                                             </div>

@@ -36,13 +36,18 @@
                         {{session('status')}}
                     </div>
                     @endif
+                    @if(session('eror'))
+                    <div class="alert alert-danger">
+                        {{session('eror')}}
+                    </div>
+                    @endif
                     <a href="{{route('pits.create') }}" class="btn btn-primary">
                         + Tambah Data Pengankutan Pit Menuju Washing Plant
                     </a>
                     <hr>
                     <p>
                     </p>
-                    <h2>Data Produk</h2>
+                    <h2>Data Pengankutan Pit Menuju Washing Plant</h2>
                     <table class="table table-striped table-bordered table-hover table table-striped table-bordered table-hover" id="sample_1">
                         <thead>
                             <tr>

@@ -36,6 +36,11 @@
                         {{session('status')}}
                     </div>
                     @endif
+                    @if(session('eror'))
+                    <div class="alert alert-danger">
+                        {{session('eror')}}
+                    </div>
+                    @endif
                     <a href="{{route('ports.create') }}" class="btn btn-primary">
                         + Tambah Data Pengankutan washing plant Menuju port
                     </a>

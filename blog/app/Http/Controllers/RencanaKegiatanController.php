@@ -17,7 +17,7 @@ class RencanaKegiatanController extends Controller
     {
         $data_rencana = RencanaKegiatan::all();
         $data_tambang = Tambang::all();
-        return view('rencana.index',compact('data_rencana','data_tambang'));
+        return view('rencana.index', compact('data_rencana', 'data_tambang'));
     }
 
     /**
@@ -29,7 +29,7 @@ class RencanaKegiatanController extends Controller
     {
         $data_rencana = RencanaKegiatan::all();
         $data_tambang = Tambang::all();
-        return view('rencana.index',compact('data_rencana','data_tambang'));
+        return view('rencana.index', compact('data_rencana', 'data_tambang'));
     }
 
     /**
@@ -40,18 +40,25 @@ class RencanaKegiatanController extends Controller
      */
     public function store(Request $request)
     {
-        $data = new RencanaKegiatan();
-        $data->kegiatan = $request->get('kegiatan');
-        $data->musim = $request->get('musim');
-        $data->mulai = $request->get('mulai');
-        $data->akhir = $request->get('akhir');
-        $data->durasi = $request->get('durasi');
-        $data->presentase = $request->get('presentase');
-        $data->ketergantungan = $request->get('ketergantungan');
-        $data->tambang_id = $request->get('tambang_id');
 
-        $data->save();
-        return redirect()->route('rencanas.index')->with('status', 'Data Rencana Kegiatan berhasil ditambah');
+
+        try {
+            $data = new RencanaKegiatan();
+            $data->kegiatan = $request->get('kegiatan');
+            $data->musim = $request->get('musim');
+            $data->mulai = $request->get('mulai');
+            $data->akhir = $request->get('akhir');
+            $data->durasi = $request->get('durasi');
+            $data->presentase = $request->get('presentase');
+            $data->ketergantungan = $request->get('ketergantungan');
+            $data->tambang_id = $request->get('tambang_id');
+
+            $data->save();
+            return redirect()->route('rencanas.index')->with('status', 'Data Rencana Kegiatan berhasil ditambah');
+        } catch (\PDOException $e) {
+            $msg = 'gagal menambah data rencana kegiatan';
+            return redirect()->route('rencanas.index')->with('eror', $msg);
+        }
     }
 
     /**
@@ -62,10 +69,10 @@ class RencanaKegiatanController extends Controller
      */
     public function show(RencanaKegiatan $rencanakegiatan)
     {
-        
+
         $data_rencana = RencanaKegiatan::all();
         $data_tambang = Tambang::all();
-        return view('rencana.show',compact('data_rencana','data_tambang'));
+        return view('rencana.show', compact('data_rencana', 'data_tambang'));
     }
 
     /**
@@ -88,17 +95,22 @@ class RencanaKegiatanController extends Controller
      */
     public function update(Request $request, RencanaKegiatan $rencanakegiatan)
     {
-        
-        $rencanakegiatan->kegiatan = $request->get('kegiatan');
-        $rencanakegiatan->musim = $request->get('musim');
-        $rencanakegiatan->mulai = $request->get('mulai');
-        $rencanakegiatan->akhir = $request->get('akhir');
-        $rencanakegiatan->durasi = $request->get('durasi');
-        $rencanakegiatan->presentase = $request->get('presentase');
-        $rencanakegiatan->ketergantungan = $request->get('ketergantungan');
-        $rencanakegiatan->tambang_id = $request->get('tambang_id');
-        $rencanakegiatan->save();
-        return redirect()->route('rencanas.index')->with('status', 'Data Rencana Kegiatan berhasil ditambah');
+
+        try {
+            $rencanakegiatan->kegiatan = $request->get('kegiatan');
+            $rencanakegiatan->musim = $request->get('musim');
+            $rencanakegiatan->mulai = $request->get('mulai');
+            $rencanakegiatan->akhir = $request->get('akhir');
+            $rencanakegiatan->durasi = $request->get('durasi');
+            $rencanakegiatan->presentase = $request->get('presentase');
+            $rencanakegiatan->ketergantungan = $request->get('ketergantungan');
+            $rencanakegiatan->tambang_id = $request->get('tambang_id');
+            $rencanakegiatan->save();
+            return redirect()->route('rencanas.index')->with('status', 'Data Rencana Kegiatan berhasil dirubah');
+        } catch (\PDOException $e) {
+            $msg = 'gagal merubah data rencana kegiatan';
+            return redirect()->route('rencanas.index')->with('eror', $msg);
+        }
     }
 
     /**

@@ -21,7 +21,7 @@ class PenggalihanBijihController extends Controller
         $total_nett = DB::table('penggalihan_bijih')->sum('total_nett');
         $data = PenggalihanBijih::all();
         $data_tambang = Tambang::all();
-        return view('penggalihan.index', compact('total_brutto','maxrecovery','total_nett','data','data_tambang'));
+        return view('penggalihan.index', compact('total_brutto', 'maxrecovery', 'total_nett', 'data', 'data_tambang'));
     }
 
     /**
@@ -43,20 +43,25 @@ class PenggalihanBijihController extends Controller
      */
     public function store(Request $request)
     {
-        $data = new PenggalihanBijih();
-        $data->rencana_tahun = $request->get('RencanaTahun');
-        $data->realisasi_tahun = $request->get('RealisasiTahun');
-        $data->lokasi = $request->get('Lokasi');
-        $data->blok = $request->get('Blok');
-        $data->pit = $request->get('Pit');
-        $data->cutofgrade_ni = $request->get('CutofgradeNi');
-        $data->bulan = $request->get('Bulan');
-        $data->total_brutto = $request->get('Total_brutto');
-        $data->recovery_pertambangan = $request->get('Recovery_pertambangan');
-        $data->total_nett = $request->get('Total_nett');
-        $data->tambang_id = $request->get('Tambang_id');
-        $data->save();
-        return redirect()->route('penggalihans.index')->with('status', 'Data Penggalihan Bijih berhasil ditambahkan');
+        try {
+            $data = new PenggalihanBijih();
+            $data->rencana_tahun = $request->get('RencanaTahun');
+            $data->realisasi_tahun = $request->get('RealisasiTahun');
+            $data->lokasi = $request->get('Lokasi');
+            $data->blok = $request->get('Blok');
+            $data->pit = $request->get('Pit');
+            $data->cutofgrade_ni = $request->get('CutofgradeNi');
+            $data->bulan = $request->get('Bulan');
+            $data->total_brutto = $request->get('Total_brutto');
+            $data->recovery_pertambangan = $request->get('Recovery_pertambangan');
+            $data->total_nett = $request->get('Total_nett');
+            $data->tambang_id = $request->get('Tambang_id');
+            $data->save();
+            return redirect()->route('penggalihans.index')->with('status', 'Data Penggalihan Bijih berhasil ditambahkan');
+        } catch (\PDOException $e) {
+            $msg = 'gagal menambah Data Penggalihan Bijih';
+            return redirect()->route('penggalihans.index')->with('eror', $msg);
+        }
     }
 
     /**
@@ -92,20 +97,24 @@ class PenggalihanBijihController extends Controller
      */
     public function update(Request $request, PenggalihanBijih $penggalihanBijih)
     {
-        dd ($request);
-        $penggalihanBijih->rencana_tahun = $request->get('RencanaTahun');
-        $penggalihanBijih->realisasi_tahun = $request->get('RealisasiTahun');
-        $penggalihanBijih->lokasi = $request->get('Lokasi');
-        $penggalihanBijih->blok = $request->get('Blok');
-        $penggalihanBijih->pit = $request->get('Pit');
-        $penggalihanBijih->cutofgrade_ni = $request->get('CutofgradeNi');
-        $penggalihanBijih->bulan = $request->get('Bulan');
-        $penggalihanBijih->total_brutto = $request->get('Total_brutto');
-        $penggalihanBijih->recovery_pertambangan = $request->get('Recovery_pertambangan');
-        $penggalihanBijih->total_nett = $request->get('Total_nett');
-        $penggalihanBijih->tambang_id = $request->get('Tambang_id');
-        $penggalihanBijih->save();
-        return redirect()->route('penggalihans.index')->with('status', 'Data Penggalihan Bijih berhasil dirubah');
+        try {
+            $penggalihanBijih->rencana_tahun = $request->get('RencanaTahun');
+            $penggalihanBijih->realisasi_tahun = $request->get('RealisasiTahun');
+            $penggalihanBijih->lokasi = $request->get('Lokasi');
+            $penggalihanBijih->blok = $request->get('Blok');
+            $penggalihanBijih->pit = $request->get('Pit');
+            $penggalihanBijih->cutofgrade_ni = $request->get('CutofgradeNi');
+            $penggalihanBijih->bulan = $request->get('Bulan');
+            $penggalihanBijih->total_brutto = $request->get('Total_brutto');
+            $penggalihanBijih->recovery_pertambangan = $request->get('Recovery_pertambangan');
+            $penggalihanBijih->total_nett = $request->get('Total_nett');
+            $penggalihanBijih->tambang_id = $request->get('Tambang_id');
+            $penggalihanBijih->save();
+            return redirect()->route('penggalihans.index')->with('status', 'Data Penggalihan Bijih berhasil dirubah');
+        } catch (\PDOException $e) {
+            $msg = 'gagal hapus Data Penggalihan Bijih';
+            return redirect()->route('penggalihans.index')->with('eror', $msg);
+        }
     }
 
     /**

@@ -17,7 +17,7 @@ class BauksitController extends Controller
     {
         $data = Bauksit::all();
         $data_tambang = Tambang::all();
-        return view('bauksit.index',compact('data','data_tambang'));
+        return view('bauksit.index', compact('data', 'data_tambang'));
     }
 
     /**
@@ -39,21 +39,26 @@ class BauksitController extends Controller
      */
     public function store(Request $request)
     {
-        $data = new Bauksit();
-        $data->cf=$request->get('cf');
-        $data->si02=$request->get('si02');
-        $data->fe203=$request->get('fe203');
-        $data->ti02=$request->get('ti02');
-        $data->ai203=$request->get('ai203');
-        $data->ratarata_tebal_ore=$request->get('ratarata_tebal_ore');
-        $data->ratarata_tebal_ob=$request->get('ratarata_tebal_ob');
-        $data->resources=$request->get('resources');
-        $data->total_ob=$request->get('total_ob');
-        $data->luas_area=$request->get('luas_area');
-        $data->tambang_id = $request->get('tambang_id');
+        try {
+            $data = new Bauksit();
+            $data->cf = $request->get('cf');
+            $data->si02 = $request->get('si02');
+            $data->fe203 = $request->get('fe203');
+            $data->ti02 = $request->get('ti02');
+            $data->ai203 = $request->get('ai203');
+            $data->ratarata_tebal_ore = $request->get('ratarata_tebal_ore');
+            $data->ratarata_tebal_ob = $request->get('ratarata_tebal_ob');
+            $data->resources = $request->get('resources');
+            $data->total_ob = $request->get('total_ob');
+            $data->luas_area = $request->get('luas_area');
+            $data->tambang_id = $request->get('tambang_id');
 
-        $data->save();
-        return redirect()->route('bauksits.index')->with('status','Data Bauksit berhasil ditambah');
+            $data->save();
+            return redirect()->route('bauksits.index')->with('status', 'Data Bauksit berhasil ditambah');
+        } catch (\PDOException $e) {
+            $msg = 'gagal menambah data bauksit';
+            return redirect()->route('bauksits.index')->with('eror', $msg);
+        }
     }
 
     /**
@@ -64,7 +69,6 @@ class BauksitController extends Controller
      */
     public function show(Bauksit $bauksit)
     {
-       
     }
 
     /**
@@ -75,9 +79,9 @@ class BauksitController extends Controller
      */
     public function edit(Bauksit $bauksit)
     {
-        $data=$bauksit;
+        $data = $bauksit;
         $data_tambang = Tambang::all();
-        return view('bauksit.edit',compact('data', 'data_tambang'));
+        return view('bauksit.edit', compact('data', 'data_tambang'));
     }
 
     /**
@@ -89,19 +93,25 @@ class BauksitController extends Controller
      */
     public function update(Request $request, Bauksit $bauksit)
     {
-        $bauksit->cf=$request->get('cf');
-        $bauksit->si02=$request->get('si02');
-        $bauksit->fe203=$request->get('fe203');
-        $bauksit->ti02=$request->get('ti02');
-        $bauksit->ai203=$request->get('ai203');
-        $bauksit->ratarata_tebal_ore=$request->get('ratarata_tebal_ore');
-        $bauksit->ratarata_tebal_ob=$request->get('ratarata_tebal_ob');
-        $bauksit->resources=$request->get('resources');
-        $bauksit->total_ob=$request->get('total_ob');
-        $bauksit->luas_area=$request->get('luas_area');
-        $bauksit->tambang_id = $request->get('tambang_id');
-        $bauksit->save();
-        return redirect()->route('bauksits.index')->with('status','Data bauksit berhasil dirubah');
+
+        try {
+            $bauksit->cf = $request->get('cf');
+            $bauksit->si02 = $request->get('si02');
+            $bauksit->fe203 = $request->get('fe203');
+            $bauksit->ti02 = $request->get('ti02');
+            $bauksit->ai203 = $request->get('ai203');
+            $bauksit->ratarata_tebal_ore = $request->get('ratarata_tebal_ore');
+            $bauksit->ratarata_tebal_ob = $request->get('ratarata_tebal_ob');
+            $bauksit->resources = $request->get('resources');
+            $bauksit->total_ob = $request->get('total_ob');
+            $bauksit->luas_area = $request->get('luas_area');
+            $bauksit->tambang_id = $request->get('tambang_id');
+            $bauksit->save();
+            return redirect()->route('bauksits.index')->with('status', 'Data bauksit berhasil dirubah');
+        } catch (\PDOException $e) {
+            $msg = 'gagal merubah data bauksit';
+            return redirect()->route('bauksits.index')->with('eror', $msg);
+        }
     }
 
     /**
@@ -112,13 +122,12 @@ class BauksitController extends Controller
      */
     public function destroy(Bauksit $bauksit)
     {
-        try{
+        try {
             $bauksit->delete();
-            return redirect()->route('bauksits.index')->with('status','Data bauksit berhasil dihapus');
-        }catch(\PDOException $e)
-        {
-            $msg='gagal hapus data bauksit';
-            return redirect()->route('bauksits.index')->with('eror',$msg);
+            return redirect()->route('bauksits.index')->with('status', 'Data bauksit berhasil dihapus');
+        } catch (\PDOException $e) {
+            $msg = 'gagal hapus data bauksit';
+            return redirect()->route('bauksits.index')->with('eror', $msg);
         }
     }
 }

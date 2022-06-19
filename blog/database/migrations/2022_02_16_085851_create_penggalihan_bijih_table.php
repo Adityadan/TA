@@ -22,7 +22,6 @@ class CreatePenggalihanBijihTable extends Migration
             $table->string('pit');
             $table->double('cutofgrade_ni',8,2);
             $table->date('bulan');
-            $table->double('total_bulan',8,2);
             $table->double('total_brutto',8,2);
             $table->double('recovery_pertambangan',8,2);
             $table->double('total_nett',8,2);

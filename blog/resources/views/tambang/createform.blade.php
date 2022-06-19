@@ -110,6 +110,12 @@
                 </div>
             </div>
             <div class="form-group row">
+                <label for="Landowner" class="col-sm-2 col-form-label">land onwer</label>
+                <div class="col-sm-10">
+                    <input type="text" value="" name="Landowner" class="form-control" id="Landowner">
+                </div>
+            </div>
+            <div class="form-group row">
                 <div class="col-sm-10">
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>

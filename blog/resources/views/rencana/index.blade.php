@@ -25,6 +25,11 @@
         {{session('status')}}
     </div>
     @endif
+    @if(session('eror'))
+    <div class="alert alert-danger">
+        {{session('eror')}}
+    </div>
+    @endif
     <a href="#modaldetail" class="btn btn-primary" data-toggle="modal">
         detail rencana kegiatan
     </a>

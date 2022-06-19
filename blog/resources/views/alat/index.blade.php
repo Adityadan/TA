@@ -31,6 +31,11 @@
                     {{session('status')}}
                 </div>
                 @endif
+                @if(session('eror'))
+                <div class="alert alert-danger">
+                    {{session('eror')}}
+                </div>
+                @endif
                 <div class="table-toolbar">
                     <div class="row">
                         <div class="col-md-6">

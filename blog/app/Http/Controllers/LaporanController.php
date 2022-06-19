@@ -17,7 +17,7 @@ class LaporanController extends Controller
     {
         $data_user = User::all();
         $data_laporan = Laporan::all();
-        return view('laporan.index', compact('data_user','data_laporan'));
+        return view('laporan.index', compact('data_user', 'data_laporan'));
     }
 
     /**
@@ -27,7 +27,6 @@ class LaporanController extends Controller
      */
     public function create()
     {
-
     }
 
     /**
@@ -38,15 +37,21 @@ class LaporanController extends Controller
      */
     public function store(Request $request)
     {
-        $data = new Laporan();
-        $data->users_id = $request->get('users_id');
-        $data->kerusakan = $request->get('kerusakan');
-        $data->prioritas = $request->get('prioritas');
-        $data->kinerja = $request->get('kinerja');
-        $data->ringkasan = $request->get('ringkasan');
-        $data->deskripsi = $request->get('deskripsi');
-        $data->save();
-        return redirect()->route('laporans.index')->with('status', 'Data Karyawan berhasil ditambahkan');
+
+        try {
+            $data = new Laporan();
+            $data->users_id = $request->get('users_id');
+            $data->kerusakan = $request->get('kerusakan');
+            $data->prioritas = $request->get('prioritas');
+            $data->kinerja = $request->get('kinerja');
+            $data->ringkasan = $request->get('ringkasan');
+            $data->deskripsi = $request->get('deskripsi');
+            $data->save();
+            return redirect()->route('laporans.index')->with('status', 'Data laporan berhasil ditambahkan');
+        } catch (\PDOException $e) {
+            $msg = 'gagal menambah data laporan';
+            return redirect()->route('laporans.index')->with('eror', $msg);
+        }
     }
 
     /**
@@ -80,14 +85,20 @@ class LaporanController extends Controller
      */
     public function update(Request $request, Laporan $laporan)
     {
-        $laporan->users_id = $request->get('users_id');
-        $laporan->kerusakan = $request->get('kerusakan');
-        $laporan->prioritas = $request->get('prioritas');
-        $laporan->kinerja = $request->get('kinerja');
-        $laporan->ringkasan = $request->get('ringkasan');
-        $laporan->deskripsi = $request->get('deskripsi');
-        $laporan->save();
-        return redirect()->route('laporans.index')->with('status', 'Data laporan berhasil rubah');
+
+        try {
+            $laporan->users_id = $request->get('users_id');
+            $laporan->kerusakan = $request->get('kerusakan');
+            $laporan->prioritas = $request->get('prioritas');
+            $laporan->kinerja = $request->get('kinerja');
+            $laporan->ringkasan = $request->get('ringkasan');
+            $laporan->deskripsi = $request->get('deskripsi');
+            $laporan->save();
+            return redirect()->route('laporans.index')->with('status', 'Data laporan berhasil rubah');
+        } catch (\PDOException $e) {
+            $msg = 'gagal merubah data laporan';
+            return redirect()->route('laporans.index')->with('eror', $msg);
+        }
     }
 
     /**

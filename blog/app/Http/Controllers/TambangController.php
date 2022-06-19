@@ -16,7 +16,7 @@ class TambangController extends Controller
     public function index()
     {
         $data = Tambang::all();
-        return view('tambang.index',compact('data'));
+        return view('tambang.index', compact('data'));
     }
 
     /**
@@ -37,23 +37,29 @@ class TambangController extends Controller
      */
     public function store(Request $request)
     {
-        $data = new Tambang();
-        $data->nama = $request->get('Nama');
-        $data->lokasi = $request->get('Lokasi');
-        $data->target = $request->get('Target');
-        $data->status = $request->get('Status');
-        $data->hasil_pertambangan = $request->get('Hasil_pertambangan');
-        $data->hari_tanggal = $request->get('Hari_tanggal');
-        $data->kode_tp = $request->get('Kode_tp');
-        $data->kordinat = $request->get('Kordinat');
-        $data->kemiringan = $request->get('Kemiringan');
-        $data->blok = $request->get('Blok');
-        $data->cuaca = $request->get('Cuaca');
-        $data->logger = $request->get('Logger');
-        $data->digger = $request->get('Digger');
+        try {
 
-        $data->save();
-        return redirect()->route('tambangs.index')->with('status', 'Data tambang berhasil ditambah');
+            $data = new Tambang();
+            $data->nama = $request->get('Nama');
+            $data->lokasi = $request->get('Lokasi');
+            $data->target = $request->get('Target');
+            $data->status = $request->get('Status');
+            $data->hasil_pertambangan = $request->get('Hasil_pertambangan');
+            $data->hari_tanggal = $request->get('Hari_tanggal');
+            $data->kode_tp = $request->get('Kode_tp');
+            $data->kordinat = $request->get('Kordinat');
+            $data->kemiringan = $request->get('Kemiringan');
+            $data->blok = $request->get('Blok');
+            $data->cuaca = $request->get('Cuaca');
+            $data->logger = $request->get('Logger');
+            $data->digger = $request->get('Digger');
+            $data->landowner = $request->get('Landowner');
+            $data->save();
+            return redirect()->route('tambangs.index')->with('status', 'Data tambang berhasil ditambah');
+        } catch (\PDOException $e) {
+            $msg = 'gagal input  data  Pertambangan';
+            return redirect()->route('tambangs.index')->with('eror', $msg);
+        }
     }
 
     /**
@@ -75,7 +81,7 @@ class TambangController extends Controller
      */
     public function edit(Tambang $tambang)
     {
-        
+
         $data = $tambang;
         return view('tambang.edit', compact('data'));
     }
@@ -89,21 +95,28 @@ class TambangController extends Controller
      */
     public function update(Request $request, Tambang $tambang)
     {
-        $tambang->nama = $request->get('Nama');
-        $tambang->lokasi = $request->get('Lokasi');
-        $tambang->status = $request->get('Status');
-        $tambang->hasil_pertambangan = $request->get('Hasil_pertambangan');
-        $tambang->hari_tanggal = $request->get('Hari_tanggal');
-        $tambang->kode_tp = $request->get('Kode_tp');
-        $tambang->kordinat = $request->get('Kordinat');
-        $tambang->kemiringan = $request->get('Kemiringan');
-        $tambang->blok = $request->get('Blok');
-        $tambang->cuaca = $request->get('Cuaca');
-        $tambang->logger = $request->get('Logger');
-        $tambang->digger = $request->get('Digger');
 
-        $tambang->save();
-        return redirect()->route('tambangs.index')->with('status', 'Data Kegiatan Pertambangan berhasil ditambah');
+        try {
+            $tambang->nama = $request->get('Nama');
+            $tambang->lokasi = $request->get('Lokasi');
+            $tambang->status = $request->get('Status');
+            $tambang->hasil_pertambangan = $request->get('Hasil_pertambangan');
+            $tambang->hari_tanggal = $request->get('Hari_tanggal');
+            $tambang->kode_tp = $request->get('Kode_tp');
+            $tambang->kordinat = $request->get('Kordinat');
+            $tambang->kemiringan = $request->get('Kemiringan');
+            $tambang->blok = $request->get('Blok');
+            $tambang->cuaca = $request->get('Cuaca');
+            $tambang->logger = $request->get('Logger');
+            $tambang->digger = $request->get('Digger');
+            $tambang->landowner = $request->get('Landowner');
+            $tambang->save();
+
+            return redirect()->route('tambangs.index')->with('status', 'Data Kegiatan Pertambangan berhasil dirubah');
+        } catch (\PDOException $e) {
+            $msg = 'gagal merubah data  Pertambangan';
+            return redirect()->route('tambangs.index')->with('eror', $msg);
+        }
     }
 
     /**
@@ -124,15 +137,14 @@ class TambangController extends Controller
     }
     public function gmaps(Tambang $tambang)
     {
-    	$tambang->kordinat = $request->get('Kordinat');
+        $tambang->kordinat = $request->get('Kordinat');
 
-    	return view('gmaps',compact('kordinat'));
-
+        return view('gmaps', compact('kordinat'));
     }
 
     public function lokasi()
     {
         $kordinat = DB::select(DB::raw("select kordinat from tambang"));
-        return view('tambang.index',compact('kordinat'));
+        return view('tambang.index', compact('kordinat'));
     }
 }

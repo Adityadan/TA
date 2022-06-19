@@ -19,7 +19,7 @@ class AlatBeratController extends Controller
         $data = AlatBerat::all();
         $data_tambang = Tambang::all();
         $data_rencana = RencanaKegiatan::all();
-        return view('alat.index', compact('data','data_tambang','data_rencana'));
+        return view('alat.index', compact('data', 'data_tambang', 'data_rencana'));
     }
 
     /**
@@ -31,7 +31,7 @@ class AlatBeratController extends Controller
     {
         $data_tambang = Tambang::all();
         $data_rencana = RencanaKegiatan::all();
-        return view('alat.createform', compact('data_tambang','data_rencana'));
+        return view('alat.createform', compact('data_tambang', 'data_rencana'));
     }
 
     /**
@@ -42,18 +42,22 @@ class AlatBeratController extends Controller
      */
     public function store(Request $request)
     {
-        $data = new AlatBerat();
-        $data->fungsi = $request->get('Fungsi');
-        $data->merk = $request->get('Merk');
-        $data->jenis = $request->get('Jenis');
-        $data->tipe = $request->get('Tipe');
-        $data->jumlah = $request->get('Jumlah');
-        $data->tambang_id = $request->get('tambang_id');
-        $data->rencana_kegiatan_id = $request->get('rencana_kegiatan_id');
 
-
-        $data->save();
-        return redirect()->route('alats.index')->with('status', 'Data Bauksit berhasil ditambah');
+        try {
+            $data = new AlatBerat();
+            $data->fungsi = $request->get('Fungsi');
+            $data->merk = $request->get('Merk');
+            $data->jenis = $request->get('Jenis');
+            $data->tipe = $request->get('Tipe');
+            $data->jumlah = $request->get('Jumlah');
+            $data->tambang_id = $request->get('tambang_id');
+            $data->rencana_kegiatan_id = $request->get('rencana_kegiatan_id');
+            $data->save();
+            return redirect()->route('alats.index')->with('status', 'Data alat berat berhasil ditambah');
+        } catch (\PDOException $e) {
+            $msg = 'gagal menambah data alat berat';
+            return redirect()->route('alats.index')->with('eror', $msg);
+        }
     }
 
     /**
@@ -78,7 +82,7 @@ class AlatBeratController extends Controller
         $data = $alat;
         $data_tambang = Tambang::all();
         $data_rencana = RencanaKegiatan::all();
-        return view('alat.edit', compact('data', 'data_tambang','data_rencana'));
+        return view('alat.edit', compact('data', 'data_tambang', 'data_rencana'));
     }
 
     /**
@@ -90,16 +94,20 @@ class AlatBeratController extends Controller
      */
     public function update(Request $request, AlatBerat $alat)
     {
-        dd($request);
-        $alat->fungsi = $request->get('fungsi');
-        $alat->merk = $request->get('merk');
-        $alat->jenis = $request->get('jenis');
-        $alat->tipe = $request->get('tipe');
-        $alat->jumlah = $request->get('jumlah');
-        $alat->tambang_id = $request->get('tambang_id');
-        $alat->rencana_kegiatan_id = $request->get('rencana_kegiatan_id');
-        $alat->save();
-        return redirect()->route('alats.index')->with('status', 'Data Alat Berat berhasil dirubah');
+        try {
+            $alat->fungsi = $request->get('fungsi');
+            $alat->merk = $request->get('merk');
+            $alat->jenis = $request->get('jenis');
+            $alat->tipe = $request->get('tipe');
+            $alat->jumlah = $request->get('jumlah');
+            $alat->tambang_id = $request->get('tambang_id');
+            $alat->rencana_kegiatan_id = $request->get('rencana_kegiatan_id');
+            $alat->save();
+            return redirect()->route('alats.index')->with('status', 'Data Alat Berat berhasil dirubah');
+        } catch (\PDOException $e) {
+            $msg = 'gagal merubah data alat berat';
+            return redirect()->route('alats.index')->with('eror', $msg);
+        }
     }
 
     /**
