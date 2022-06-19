@@ -76,6 +76,7 @@
                             <td>
                                 {{$d->jumlah}}
                             </td>
+                            @can('delete-permission', $d)
                             <td>
                                 <a href="{{route('alats.edit',$d->id)}}" class="btn btn-warning">Edit</a>
                                 <br><br>
@@ -86,6 +87,7 @@
                                     return false;" />
                                 </form>
                             </td>
+                            @endcan
                         </tr>
                         @endforeach
                     </tbody>

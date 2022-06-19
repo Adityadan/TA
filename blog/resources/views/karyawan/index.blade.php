@@ -79,6 +79,7 @@
                                         Detail
                                     </a>
                                 </td>
+                                @can('delete-permission', $d)
                                 <td>
                                     <a href="{{route('karyawans.edit',$d->id)}}" class="btn btn-warning">Edit</a>
                                     <a href="#modaledit{{ $d->id }}" class="btn btn-info" data-toggle="modal">
@@ -92,6 +93,7 @@
                                     return false;" />
                                     </form>
                                 </td>
+                                @endcan
                             </tr>
 
 

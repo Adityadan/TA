@@ -54,6 +54,17 @@
             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
         </div>
     </div>
+    <div class="form-group row">
+        <label for="roles-row" class="col-md-4 col-form-label text-md-right">jabatan</label>
+        <div class="col-md-6">
+            <input type="radio" id="karyawan" name="jabatan" value="karyawan">
+            <label for="karyawan">karyawan</label>
+            <br>
+            <input type="radio" id="manajer" name="jabatan" value="manajer">
+            <label for="manajer">manajer</label>
+            <br>
+        </div>
+    </div>
 
     <div class="form-group row mb-0">
         <div class="col-md-6 offset-md-4">

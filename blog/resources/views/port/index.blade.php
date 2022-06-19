@@ -79,6 +79,8 @@
                                         Detail
                                     </a>
                                 </td>
+                                
+                                @can('delete-permission', $d)
                                 <td>
                                     <a href="{{route('ports.edit',$d->id)}}" class="btn btn-warning">edit</a>
                                     <br><br>
@@ -89,6 +91,8 @@
                                     return false;" />
                                     </form>
                                 </td>
+                                
+                                @endcan
                             </tr>
                             <!-- Modal Detail -->
                             <div id="modalDetail_{{ $d->id }}" class="modal fade" role="dialog" aria-hidden="true">

@@ -25,6 +25,18 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('delete-permission',function($user){
+            return ($user->jabatan=='manajer');
+        });
+        Gate::define('edit-permission',function($user){
+            return ($user->jabatan=='manajer');
+        });
+        Gate::define('delete-permission',function($user){
+            return ($user->jabatan=='manajer');
+        });
+        Gate::define('inset-permission',function($user){
+            return ($user->jabatan=='manajer');
+        });
+        
     }
 }

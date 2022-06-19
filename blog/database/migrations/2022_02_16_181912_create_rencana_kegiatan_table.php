@@ -19,9 +19,9 @@ class CreateRencanaKegiatanTable extends Migration
             $table->string('musim');
             $table->dateTime('mulai');
             $table->dateTime('akhir');
-            $table->integer('durasi');
+            $table->integer('durasi')->nullable();
             $table->integer('presentase');
-            $table->string('ketergantungan');
+            $table->string('ketergantungan')->nullable();
             $table->unsignedBigInteger('tambang_id');
             $table->foreign('tambang_id')->references('id')->on('tambang');
             $table->timestamps();

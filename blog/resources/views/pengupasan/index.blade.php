@@ -143,6 +143,8 @@
                                     <td>
                                         {{$d->tambang_id}}
                                     </td>
+                                    
+                                @can('delete-permission', $d)
                                     <td>
                                         <a href="{{url('pengupasans/'.$d->id.'/edit')}}" class="btn btn-warning">edit</a>
                                         <br><br>
@@ -153,6 +155,7 @@
                                     return false;" />
                                         </form>
                                     </td>
+                                @endcan
                                 </tr>
 
                                 <!-- Modal Detail -->

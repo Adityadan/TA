@@ -96,6 +96,8 @@
                             <td>
                                 {{$d->tambang->id}}
                             </td>
+                            
+                            @can('delete-permission', $d)
                             <td>
                                 <a href="#modaledit{{ $d->id }}" class="btn btn-info" data-toggle="modal">
                                     edit
@@ -108,6 +110,7 @@
                                     return false;" />
                                 </form>
                             </td>
+                            @endcan
                         </tr>
 
                         <div class="modal fade" id="modaledit{{ $d->id }}" tabindex="-1" role="basic" aria-hidden="true">

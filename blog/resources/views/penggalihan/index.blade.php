@@ -144,6 +144,8 @@
                                         Detail
                                     </a>
                                 </td> -->
+                                
+                                @can('delete-permission', $d)
                                 <td>
                                     <a href="{{url('penggalihans/'.$d->id.'/edit')}}" class="btn btn-warning">edit</a>
                                     <a href="#modaledit{{ $d->id }}" class="btn btn-info" data-toggle="modal">
@@ -157,6 +159,8 @@
                                     return false;" />
                                     </form>
                                 </td>
+                                
+                                @endcan
                             </tr>
 
                             <!-- Modal Detail -->

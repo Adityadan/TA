@@ -42,6 +42,7 @@ class KaryawanController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('insert-permission',$request);
         try {
             $data = new Karyawan();
             $data->nama = $request->get('Nama');
@@ -96,6 +97,8 @@ class KaryawanController extends Controller
      */
     public function update(Request $request, Karyawan $karyawan)
     {
+        
+        $this->authorize('edit-permission',$request);
         try {
             $karyawan->nama = $request->get('Nama');
             $karyawan->devisi = $request->get('Devisi');

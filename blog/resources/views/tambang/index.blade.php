@@ -73,6 +73,8 @@
                                         Detail
                                     </a>
                                 </td>
+
+                                @can('delete-permission', $d)
                                 <td>
                                     <a href="{{url('tambangs/'.$d->id.'/edit')}}" class="btn btn-warning">edit</a>
                                     <br><br>
@@ -83,6 +85,7 @@
                                     return false;" />
                                     </form>
                                 </td>
+                                @endcan
                             </tr>
                             <!-- Modal Detail -->
                             <div id="modalDetail_{{ $d->id }}" class="modal fade" role="dialog" aria-hidden="true">
@@ -261,34 +264,34 @@
 
 <script type="text/javascript">
     var locations = [
-      ['Tambang A', 0.3176578, 110.1059246],
-      ['Tambang B', 0.3272706, 110.0156307],
-      ['Tambang C', 0.3000198, 109.8166752],
+        ['Tambang A', 0.3176578, 110.1059246],
+        ['Tambang B', 0.3272706, 110.0156307],
+        ['Tambang C', 0.3000198, 109.8166752],
     ];
-    
+
     var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 10,
-      center: new google.maps.LatLng(0.9619, 114.5548),
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+        zoom: 10,
+        center: new google.maps.LatLng(0.9619, 114.5548),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
     });
-    
+
     var infowindow = new google.maps.InfoWindow();
 
     var marker, i;
-    
-    for (i = 0; i < locations.length; i++) {  
-      marker = new google.maps.Marker({
-        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-        map: map
-      });
-      
-      google.maps.event.addListener(marker, 'click', (function(marker, i) {
-        return function() {
-          infowindow.setContent(locations[i][0]);
-          infowindow.open(map, marker);
-        }
-      })(marker, i));
+
+    for (i = 0; i < locations.length; i++) {
+        marker = new google.maps.Marker({
+            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+            map: map
+        });
+
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+                infowindow.setContent(locations[i][0]);
+                infowindow.open(map, marker);
+            }
+        })(marker, i));
     }
-  </script>
+</script>
 
 @endsection
