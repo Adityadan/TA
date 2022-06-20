@@ -49,7 +49,6 @@
                                 <th>lokasi</th>
                                 <th>status</th>
                                 <th>Tanggal</th>
-                                <th>Detail Data</th>
                                 <th>Opsi Data</th>
                             </tr>
                         </thead>
@@ -73,8 +72,6 @@
                                         Detail
                                     </a>
                                 </td>
-
-                                @can('delete-permission', $d)
                                 <td>
                                     <a href="{{url('tambangs/'.$d->id.'/edit')}}" class="btn btn-warning">edit</a>
                                     <br><br>
@@ -85,7 +82,6 @@
                                     return false;" />
                                     </form>
                                 </td>
-                                @endcan
                             </tr>
                             <!-- Modal Detail -->
                             <div id="modalDetail_{{ $d->id }}" class="modal fade" role="dialog" aria-hidden="true">
@@ -264,9 +260,9 @@
 
 <script type="text/javascript">
     var locations = [
-        ['Tambang A', 0.3176578, 110.1059246],
-        ['Tambang B', 0.3272706, 110.0156307],
-        ['Tambang C', 0.3000198, 109.8166752],
+        @foreach($data as $d)
+        ["{{$d->nama}}",{{$d->kordinat}}],
+        @endforeach
     ];
 
     var map = new google.maps.Map(document.getElementById('map'), {

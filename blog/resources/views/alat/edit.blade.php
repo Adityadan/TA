@@ -67,7 +67,7 @@
                 <div class="col-sm-10">
                     <select class="form-control" name="tambang_id" id="tambang_id" required>
                         @foreach($data_tambang as $d)
-                        <option value="{{$d->id}}">{{$d->id}}</option>
+                        <option value="{{$d->id}}">{{$d->nama}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -77,7 +77,7 @@
                 <div class="col-sm-10">
                     <select class="form-control" name="rencana_kegiatan_id" id="rencana_kegiatan_id" required>
                         @foreach($data_rencana as $d)
-                        <option value="{{$d->id}}">{{$d->nama_kegiatan}}</option>
+                        <option value="{{$d->id}}">{{$d->kegiatan}}</option>
                         @endforeach
                     </select>
                 </div>

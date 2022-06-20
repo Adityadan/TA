@@ -18,13 +18,11 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', function () {
-        return view('dashboard');
-    });
+
+    
     Route::resource('karyawans', 'KaryawanController');
     Route::resource('alats', 'AlatBeratController');
     Route::resource('bauksits', 'BauksitController');
-    Route::resource('produksis', 'ProsesProduksiBauksitController');
     Route::resource('tambangs', 'TambangController');
     Route::resource('penggalihans', 'PenggalihanBijihController');
     Route::resource('pengupasans', 'PengupasanTanahPucukController');

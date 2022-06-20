@@ -52,6 +52,15 @@
             <div class="form-group row">
                 <label for="Status" class="col-sm-2 col-form-label">Status</label>
                 <div class="col-sm-10">
+                    <select select class="form-control" name="Status" id="Status" required>
+                        <option value="berlangsung">Berlangsung</option>
+                        <option value="selesai">Selesai</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="Status" class="col-sm-2 col-form-label">Status</label>
+                <div class="col-sm-10">
                     <input type="text" value="" name="Status" class="form-control" id="Status" required>
                 </div>
             </div>
@@ -74,43 +83,43 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="Kordinat" class="col-sm-2 col-form-label">kordinat daerah pertambangan</label>
+                <label for="Kordinat" class="col-sm-2 col-form-label">Koordinat daerah pertambangan</label>
                 <div class="col-sm-10">
                     <input type="text" value="" name="Kordinat" class="form-control" id="Kordinat" required>
                 </div>
             </div>
             <div class="form-group row">
-                <label for="v" class="col-sm-2 col-form-label">kemiringan</label>
+                <label for="v" class="col-sm-2 col-form-label">Kemiringan</label>
                 <div class="col-sm-10">
                     <input type="text" value="" name="Kemiringan" class="form-control" id="Kemiringan" required>
                 </div>
             </div>
             <div class="form-group row">
-                <label for="Blok" class="col-sm-2 col-form-label">blok</label>
+                <label for="Blok" class="col-sm-2 col-form-label">Blok</label>
                 <div class="col-sm-10">
                     <input type="text" value="" name="Blok" class="form-control" id="Blok" required>
                 </div>
             </div>
             <div class="form-group row">
-                <label for="Cuaca" class="col-sm-2 col-form-label">cuaca</label>
+                <label for="Cuaca" class="col-sm-2 col-form-label">Vuaca</label>
                 <div class="col-sm-10">
                     <input type="text" value="" name="Cuaca" class="form-control" id="Cuaca" required>
                 </div>
             </div>
             <div class="form-group row">
-                <label for="Logger" class="col-sm-2 col-form-label">logger</label>
+                <label for="Logger" class="col-sm-2 col-form-label">Logger</label>
                 <div class="col-sm-10">
                     <input type="text" value="" name="Logger" class="form-control" id="Logger" required>
                 </div>
             </div>
             <div class="form-group row">
-                <label for="Digger" class="col-sm-2 col-form-label">digger</label>
+                <label for="Digger" class="col-sm-2 col-form-label">Digger</label>
                 <div class="col-sm-10">
                     <input type="text" value="" name="Digger" class="form-control" id="Digger" required>
                 </div>
             </div>
             <div class="form-group row">
-                <label for="Landowner" class="col-sm-2 col-form-label">land onwer</label>
+                <label for="Landowner" class="col-sm-2 col-form-label">Land Owner</label>
                 <div class="col-sm-10">
                     <input type="text" value="" name="Landowner" class="form-control" id="Landowner">
                 </div>

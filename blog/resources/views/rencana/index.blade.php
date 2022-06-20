@@ -97,7 +97,6 @@
                                 {{$d->tambang->id}}
                             </td>
                             
-                            @can('delete-permission', $d)
                             <td>
                                 <a href="#modaledit{{ $d->id }}" class="btn btn-info" data-toggle="modal">
                                     edit
@@ -110,7 +109,6 @@
                                     return false;" />
                                 </form>
                             </td>
-                            @endcan
                         </tr>
 
                         <div class="modal fade" id="modaledit{{ $d->id }}" tabindex="-1" role="basic" aria-hidden="true">
@@ -295,21 +293,6 @@
                 new Date({{$d->mulai}}), new Date({{$d->akhir}}), null, {{$d->presentase}}, null
             ],
             @endforeach
-            // ['2014Spring', 'Spring 2014', 'spring',
-            //     new Date(2014, 2, 22), new Date(2014, 5, 22), null, 100, null
-            // ],
-            // ['2014Summer', 'Summer 2014', 'summer',
-            //     new Date(2014, 5, 21), new Date(2014, 8, 20), null, 100, null
-            // ],
-            // ['2014Autumn', 'Autumn 2014', 'autumn',
-            //     new Date(2014, 8, 21), new Date(2014, 11, 20), null, 100, null
-            // ],
-            // ['2014Winter', 'Winter 2014', 'winter',
-            //     new Date(2014, 11, 21), new Date(2015, 2, 21), null, 100, null
-            // ],
-            // ['2015Spring', 'Spring 2015', 'spring',
-            //     new Date(2015, 2, 22), new Date(2015, 5, 20), null, 50, null
-            // ],
         ]);
 
         var options = {

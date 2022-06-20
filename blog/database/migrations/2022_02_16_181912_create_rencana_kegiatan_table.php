@@ -17,8 +17,8 @@ class CreateRencanaKegiatanTable extends Migration
             $table->id();
             $table->string('kegiatan');
             $table->string('musim');
-            $table->dateTime('mulai');
-            $table->dateTime('akhir');
+            $table->string('mulai');
+            $table->string('akhir');
             $table->integer('durasi')->nullable();
             $table->integer('presentase');
             $table->string('ketergantungan')->nullable();

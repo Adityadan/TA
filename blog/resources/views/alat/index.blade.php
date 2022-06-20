@@ -76,7 +76,6 @@
                             <td>
                                 {{$d->jumlah}}
                             </td>
-                            @can('delete-permission', $d)
                             <td>
                                 <a href="{{route('alats.edit',$d->id)}}" class="btn btn-warning">Edit</a>
                                 <br><br>
@@ -87,7 +86,6 @@
                                     return false;" />
                                 </form>
                             </td>
-                            @endcan
                         </tr>
                         @endforeach
                     </tbody>
@@ -145,7 +143,7 @@
                         <div class="col-sm-10">
                             <select class="form-control" name="rencana_kegiatan_id" id="rencana_kegiatan_id" required>
                                 @foreach($data_rencana as $d)
-                                <option value="{{$d->id}}">{{$d->nama_kegiatan}}</option>
+                                <option value="{{$d->id}}">{{$d->kegiatan}}</option>
                                 @endforeach
                             </select>
                         </div>

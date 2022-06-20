@@ -54,7 +54,6 @@ class PengupasanTanahPucukController extends Controller
             $data->jumlah_bcm = $request->get('JumlahBcm');
             $data->jumlah_ton = $request->get('JumlahTon');
             $data->berat_jenis_material = $request->get('BeratJenisMaterial');
-            $data->total = $request->get('Total');
             $data->keteragan = $request->get('Keteragan');
             $data->alat_gali_muat = $request->get('AlatGaliMuat');
             $data->alat_dorong = $request->get('AlatDorong');
@@ -90,9 +89,9 @@ class PengupasanTanahPucukController extends Controller
      */
     public function edit(PengupasanTanahPucuk $pengupasanTanahPucuk)
     {
-        $data = $pengupasanTanahPucuk;
         $data_tambang = Tambang::all();
-        return view('pengupasan.editform', compact('data', 'data_tambang'));
+        $data = $pengupasanTanahPucuk;
+        return view('pengupasan.edit', compact('data', 'data_tambang'));
     }
 
     /**

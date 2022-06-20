@@ -42,19 +42,20 @@ class BauksitController extends Controller
         try {
             $data = new Bauksit();
             $data->cf = $request->get('cf');
-            $data->si02 = $request->get('si02');
-            $data->fe203 = $request->get('fe203');
-            $data->ti02 = $request->get('ti02');
-            $data->ai203 = $request->get('ai203');
-            $data->ratarata_tebal_ore = $request->get('ratarata_tebal_ore');
-            $data->ratarata_tebal_ob = $request->get('ratarata_tebal_ob');
-            $data->resources = $request->get('resources');
-            $data->total_ob = $request->get('total_ob');
-            $data->luas_area = $request->get('luas_area');
+            $data->si02 = $request->get('Si02');
+            $data->fe203 = $request->get('Fe203');
+            $data->ti02 = $request->get('Ti02');
+            $data->ai203 = $request->get('Ai203');
+            $data->ratarata_tebal_ore = $request->get('Ratarata_tebal_ore');
+            $data->ratarata_tebal_ob = $request->get('Ratarata_tebal_ob');
+            $data->resources = $request->get('Resources');
+            $data->total_ob = $request->get('Total_ob');
+            $data->luas_area = $request->get('Luas_area');
             $data->tambang_id = $request->get('tambang_id');
 
             $data->save();
-            return redirect()->route('bauksits.index')->with('status', 'Data Bauksit berhasil ditambah');
+            
+            return redirect()->route('bauksits.index')->with('status', 'Data bauksit berhasil ditambah');
         } catch (\PDOException $e) {
             $msg = 'gagal menambah data bauksit';
             return redirect()->route('bauksits.index')->with('eror', $msg);

@@ -427,7 +427,6 @@
 				<!-- BEGIN USER LOGIN DROPDOWN -->
 				<li class="dropdown user">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-						<img alt="" src="{{ asset('assets/img/avatar3_small.jpg')}}" />
 						@if (Auth::user())
 						<span class="username">
 							{{Auth::user()->name}}
@@ -472,10 +471,9 @@
 						</form>
 					</li>
 					<li class="start {{ Request::is('/') ? 'active' : '' }} ">
-						<a href="{{ url('/') }}">
+						<a href="{{ url('/home') }}">
 							<i class="icon-home"></i>
 							<span class="title">Dashboard</span>
-							@yield('testingsidebar')
 						</a>
 					</li>
 					<li class="{{ Request::is('tambangs') ? 'active' : '' }}">
@@ -535,7 +533,7 @@
 					<li class="{{ Request::is('laporans') ? 'active' : '' }}">
 						<a href="{{ url('laporans') }}">
 							<i class="fa  fa-exclamation-triangle"></i>
-							<span class="title">Laporan Permasalahan</span>
+							<span class="title">Laporan Kerusakan</span>
 						</a>
 					</li>
 				</ul>

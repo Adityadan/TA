@@ -84,7 +84,6 @@
                                         Detail
                                     </a>
                                 </td>
-                                @can('delete-permission', $d)
                                 <td>
                                     <form method="POST" action="{{ url('laporans/'.$d->id)}}">
                                         @csrf
@@ -93,7 +92,6 @@
                                     return false;" />
                                     </form>
                                 </td>
-                                @endcan
                             </tr>
 
                             <!-- Modal Detail -->
@@ -233,7 +231,7 @@
                         <label for="deskripsi" class="col-sm-2 col-form-label">deskripsi kerusakan</label>
                         <div class="col-sm-10">
 
-                            <textarea  value="" name="deskripsi" class="form-control" id="deskripsi"rows="3"></textarea>
+                            <textarea value="" name="deskripsi" class="form-control" id="deskripsi" rows="3"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">

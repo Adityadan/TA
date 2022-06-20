@@ -57,10 +57,10 @@
     <div class="form-group row">
         <label for="roles-row" class="col-md-4 col-form-label text-md-right">jabatan</label>
         <div class="col-md-6">
-            <input type="radio" id="karyawan" name="jabatan" value="karyawan">
+            <input type="radio" id="karyawan" name="jabatan" value="karyawan" required>
             <label for="karyawan">karyawan</label>
             <br>
-            <input type="radio" id="manajer" name="jabatan" value="manajer">
+            <input type="radio" id="manajer" name="jabatan" value="manajer" required>
             <label for="manajer">manajer</label>
             <br>
         </div>

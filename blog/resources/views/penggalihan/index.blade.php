@@ -145,7 +145,6 @@
                                     </a>
                                 </td> -->
                                 
-                                @can('delete-permission', $d)
                                 <td>
                                     <a href="{{url('penggalihans/'.$d->id.'/edit')}}" class="btn btn-warning">edit</a>
                                     <a href="#modaledit{{ $d->id }}" class="btn btn-info" data-toggle="modal">
@@ -160,7 +159,6 @@
                                     </form>
                                 </td>
                                 
-                                @endcan
                             </tr>
 
                             <!-- Modal Detail -->
@@ -414,7 +412,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                <h4 class="modal-title">form tambah alat berat</h4>
+                <h4 class="modal-title">Form Tambah Data Penggalihan Bijih</h4>
             </div>
             <div class="modal-body">
                 <form method="POST" action="{{ route('penggalihans.store') }}">
