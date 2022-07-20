@@ -40,8 +40,6 @@ class RencanaKegiatanController extends Controller
      */
     public function store(Request $request)
     {
-
-
         try {
             $data = new RencanaKegiatan();
             $data->kegiatan = $request->get('kegiatan');
@@ -64,12 +62,11 @@ class RencanaKegiatanController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\RencanaKegiatan  $rencanakegiatan
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(RencanaKegiatan $rencanakegiatan)
+    public function show($id)
     {
-
         $data_rencana = RencanaKegiatan::all();
         $data_tambang = Tambang::all();
         return view('rencana.show', compact('data_rencana', 'data_tambang'));
@@ -78,10 +75,10 @@ class RencanaKegiatanController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\RencanaKegiatan  $rencanakegiatan
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(RencanaKegiatan $rencanakegiatan)
+    public function edit($id)
     {
         //
     }
@@ -90,12 +87,11 @@ class RencanaKegiatanController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\RencanaKegiatan  $rencanakegiatan
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RencanaKegiatan $rencanakegiatan)
+    public function update(Request $request,RencanaKegiatan $rencanakegiatan)
     {
-
         try {
             $rencanakegiatan->kegiatan = $request->get('kegiatan');
             $rencanakegiatan->musim = $request->get('musim');
@@ -116,7 +112,7 @@ class RencanaKegiatanController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\RencanaKegiatan  $rencanakegiatan
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(RencanaKegiatan $rencanakegiatan)

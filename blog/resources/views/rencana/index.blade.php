@@ -96,7 +96,7 @@
                             <td>
                                 {{$d->tambang->id}}
                             </td>
-                            
+
                             <td>
                                 <a href="#modaledit{{ $d->id }}" class="btn btn-info" data-toggle="modal">
                                     edit
@@ -212,7 +212,10 @@
                     <div class="form-group row">
                         <label for="musim" class="col-sm-2 col-form-label">musim</label>
                         <div class="col-sm-10">
-                            <input type="text" value="" name="musim" class="form-control" id="musim" required>
+                            <select class="form-control" name="musim" id="musim" required>
+                                <option value="kemarau">Kemarau</option>
+                                <option value="hujan">Hujan</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row">

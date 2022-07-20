@@ -19,12 +19,6 @@ class KaryawanPolicy
     {
         //
     }
-    public function insert(User $user)
-    {
-        return ($user->sebagai == 'manajer'
-            ? Response::allow()
-            : Response::deny('Maaf, akses khusus manajer'));
-    }
     public function delete(User $user)
     {
         return ($user->sebagai == 'manajer'

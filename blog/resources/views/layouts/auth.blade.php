@@ -51,10 +51,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <body class="login">
     <!-- BEGIN LOGO -->
     <div class="logo">
-        <!-- <a href="index.html">
-            <img src="assets/img/logo.png" alt="" />
-        </a> -->
-        <h1><strong>Sistem Informasi Produksi Bijih Bauksit</strong></h1>
+        <img src="{{ asset('assets/img/logo1.png')}}" alt="logo" />
     </div>
     <!-- END LOGO -->
     <!-- BEGIN LOGIN -->

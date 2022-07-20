@@ -73,8 +73,8 @@
 		<!-- BEGIN TOP NAVIGATION BAR -->
 		<div class="header-inner">
 			<!-- BEGIN LOGO -->
-			<div class="page-logo text-info">
-				<h6><strong>Sistem Informasi Produksi Bijih Bauksit</strong></h6>
+			<div class="page-logo">
+					<img src="{{ asset('assets/img/logo1.png')}}" alt="logo" />
 			</div>
 			<!-- END LOGO -->
 			<!-- BEGIN RESPONSIVE MENU TOGGLER -->
@@ -524,12 +524,14 @@
 							<span class="title">Pengangkutan Washing Plant Menuju Port</span>
 						</a>
 					</li>
+					@can('viewManajer-permission')
 					<li class="{{ Request::is('karyawans') ? 'active' : '' }}">
 						<a href="{{ url('karyawans') }}">
 							<i class="fa fa-users"></i>
 							<span class="title">Karyawan</span>
 						</a>
 					</li>
+					@endcan
 					<li class="{{ Request::is('laporans') ? 'active' : '' }}">
 						<a href="{{ url('laporans') }}">
 							<i class="fa  fa-exclamation-triangle"></i>

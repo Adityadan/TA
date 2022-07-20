@@ -59,12 +59,6 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="Status" class="col-sm-2 col-form-label">Status</label>
-                <div class="col-sm-10">
-                    <input type="text" value="" name="Status" class="form-control" id="Status" required>
-                </div>
-            </div>
-            <div class="form-group row">
                 <label for="Hasil_pertambangan" class="col-sm-2 col-form-label">Hasil Pertambangan</label>
                 <div class="col-sm-10">
                     <input type="text" value="" name="Hasil_pertambangan" class="form-control" id="Hasil_pertambangan" required>
@@ -101,7 +95,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="Cuaca" class="col-sm-2 col-form-label">Vuaca</label>
+                <label for="Cuaca" class="col-sm-2 col-form-label">Cuaca</label>
                 <div class="col-sm-10">
                     <input type="text" value="" name="Cuaca" class="form-control" id="Cuaca" required>
                 </div>

@@ -84,6 +84,7 @@
                                         Detail
                                     </a>
                                 </td>
+                                @can('viewManajer-permission')
                                 <td>
                                     <form method="POST" action="{{ url('laporans/'.$d->id)}}">
                                         @csrf
@@ -92,6 +93,7 @@
                                     return false;" />
                                     </form>
                                 </td>
+                                @endcan
                             </tr>
 
                             <!-- Modal Detail -->

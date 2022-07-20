@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Auth\Access\Response;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -39,7 +40,15 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('delete-permission', 'App\Policies\KaryawanPolicy@delete');
 
         Gate::define('edit-permission', 'App\Policies\KaryawanPolicy@edit');
-        Gate::define('insert-permission', 'App\Policies\KaryawanPolicy@insert');
+        Gate::define('viewManajer-permission', 'App\Policies\KaryawanPolicy@view');
+        
+        Gate::define('viewManajer-permission', function($user) {
+            return ($user->jabatan == 'manajer'
+                    ? Response::allow()
+                    : Response::deny("Kamu harus manajer untuk bisa akses.")
+                    );
+        });
+        
         
     }
 }
