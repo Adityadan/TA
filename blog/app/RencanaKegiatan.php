@@ -13,6 +13,6 @@ class RencanaKegiatan extends Model
     }
     public function karyawan()
     {
-        return $this->hasMany('App\Karyawan','rencana_kegaitan_id','id');
+        return $this->hasMany('App\Karyawan','rencana_kegiatan_id','id');
     }
 }

@@ -24,67 +24,7 @@
 
     </ul>
 </div>
-<div class="row">
-    @if($alert!="kosong")
-    <div class="alert alert-warning">
-        {{$alert}}
-    </div>
-    @endif
 
-    <div class="portlet">
-        <div class="portlet-title">
-            <div class="caption">
-                <i class="fa fa-cogs"></i>Kegiatan Yang Mendekati Deadline
-            </div>
-        </div>
-        <div class="portlet-body">
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>
-                                ID
-                            </th>
-                            <th>
-                                Nama Kegiatan
-                            </th>
-                            <th>
-                                Tanggal Mulai
-                            </th>
-                            <th>
-                                Tanggal Akhir
-                            </th>
-                            <th>
-                                Presentase
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($deadline as $d)
-                        <tr>
-                            <td>
-                            {{$d->id }}
-                            </td>
-                            <td>
-                            {{$d->kegiatan }}
-                            </td>
-                            <td>
-                            {{$d->mulai }}
-                            </td>
-                            <td>
-                            {{$d->akhir }}
-                            </td>
-                            <td>
-                            {{$d->presentase }}
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
 
 @endsection
 

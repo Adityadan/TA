@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\RencanaKegiatan;
 use App\Tambang;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RencanaKegiatanController extends Controller
 {
@@ -17,7 +18,12 @@ class RencanaKegiatanController extends Controller
     {
         $data_rencana = RencanaKegiatan::all();
         $data_tambang = Tambang::all();
-        return view('rencana.index', compact('data_rencana', 'data_tambang'));
+        $deadline = DB::select('SELECT * FROM rencana_kegiatan WHERE akhir >= CURDATE() and akhir <= DATE_ADD(CURDATE(), INTERVAL 1 Month)');
+        // $alert = "kosong";
+        // if ($prioritas != null) {
+        //     $alert = "Rencana Kegiatan " . $prioritas->kegiatan . " Harus Segera Diselesaikan Terlebih Dahulu";
+        // }
+        return view('rencana.index', compact('deadline','data_rencana', 'data_tambang'));
     }
 
     /**
@@ -112,7 +118,7 @@ class RencanaKegiatanController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\RencanaKegiatan  $rencanakegiatan
      * @return \Illuminate\Http\Response
      */
     public function destroy(RencanaKegiatan $rencanakegiatan)

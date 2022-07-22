@@ -17,7 +17,9 @@ class WpPortController extends Controller
     public function index()
     {
         $data = WpPort::all();
-        return view('port.index', compact('data'));
+        $data_alat = AlatBerat::all();
+        $data_tambang = Tambang::all();
+        return view('port.index', compact('data_alat','data','data_tambang'));
     }
 
     /**

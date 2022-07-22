@@ -74,7 +74,7 @@
                                 {{$d->tipe}}
                             </td>
                             <td>
-                                {{$d->jumlah}}
+                                {{$d->jumlah}} unit
                             </td>
                             <td>
                                 <a href="{{route('alats.edit',$d->id)}}" class="btn btn-warning">Edit</a>

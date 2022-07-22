@@ -41,9 +41,9 @@
                         {{session('eror')}}
                     </div>
                     @endif
-                    
+
                     <a href="#modalladd" class="btn btn-primary" data-toggle="modal">
-                    Tambah Data Pengankutan Pit Menuju Washing Plant
+                        Tambah Data Pengankutan Pit Menuju Washing Plant
                     </a>
                     <hr>
                     <p>
@@ -53,10 +53,17 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>no pit</th>
-                                <th>no washing plant</th>
-                                <th>tahun</th>
-                                <th>Detail Data</th>
+                                <th>Nomor Pit</th>
+                                <th>Nomor Washing Plant</th>
+                                <th>Tahun</th>
+                                <th>Rom Hauling</th>
+                                <th>Alat Berat</th>
+                                <th>Jarak Pengangkutan</th>
+                                <th>Kapasitas Maksimal</th>
+                                <th>Waktu Pengerjaan</th>
+                                <th>Kapasitas Pengangkutan</th>
+                                <th>Jumlah Dump Truck</th>
+                                <th>Kode Pertambangan</th>
                                 <th>Opsi Data</th>
                             </tr>
                         </thead>
@@ -76,14 +83,33 @@
                                     {{$d->tahun}}
                                 </td>
                                 <td>
-                                    <a href="#modalDetail_{{ $d->id }}" class="btn btn-info" data-toggle="modal">
-                                        Detail
-                                    </a>
+                                    {{$d->rom_hauling }}
                                 </td>
                                 <td>
-                                    <a href="{{url('pits/'.$d->id.'/edit')}}" class="btn btn-warning">edit</a>
+                                    {{$d->alat_berat -> merk}}
+                                </td>
+                                <td>
+                                    {{$d->distance}}
+                                </td>
+                                <td>
+                                    {{$d->max_load}}
+                                </td>
+                                <td>
+                                    {{$d->cycle_time }}
+                                </td>
+                                <td>
+                                    {{$d->cap}}
+                                </td>
+                                <td>
+                                    {{$d->dt_need}}
+                                </td>
+                                <td>
+                                    {{$d->tambang->nama}}
+                                </td>
+                                <td>
+                                    <!-- <a href="{{url('pits/'.$d->id.'/edit')}}" class="btn btn-warning">edit</a> -->
                                     <a href="#modaledit{{ $d->id }}" class="btn btn-info" data-toggle="modal">
-                                        edit modal
+                                        edit
                                     </a>
                                     <br><br>
                                     <form method="POST" action="{{ url('pits/'.$d->id)}}">

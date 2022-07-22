@@ -27,13 +27,7 @@ class HomeController extends Controller
     public function index()
 
     {
-        $deadline = DB::select('SELECT * from rencana_kegiatan where akhir > now() - INTERVAL 60 day');
-        $prioritas = DB::select('SELECT * from rencana_kegiatan where akhir > now() - INTERVAL 60 day ORDER BY akhir DESC');
-        $alert = "kosong";
-        if ($prioritas != null) {
-            $alert = "rencana kegiatan " . $prioritas->kegiatan . " harus segera diselesaikan terlebih dahulu";
-        }
-        return view('dashboard', compact('alert', 'deadline'));
+       
+        return view('dashboard');
     }
 }
-$prioritas = RencanaKegiatan::where('akhir', '<', '100')->orderBy('akhir')->first();

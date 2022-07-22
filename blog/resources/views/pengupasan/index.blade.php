@@ -145,9 +145,9 @@
                                     </td>
 
                                     <td>
-                                        <a href="{{url('pengupasans/'.$d->id.'/edit')}}" class="btn btn-warning">edit</a>
+                                        <!-- <a href="{{url('pengupasans/'.$d->id.'/edit')}}" class="btn btn-warning">edit</a> -->
                                         <a href="#modaledit{{ $d->id }}" class="btn btn-info" data-toggle="modal">
-                                            edit modal
+                                            edit
                                         </a>
                                         <br><br>
                                         <form method="POST" action="{{ url('pengupasans/'.$d->id)}}">

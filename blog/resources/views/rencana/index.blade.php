@@ -34,16 +34,85 @@
         detail rencana kegiatan
     </a>
     <div class="col-md-12">
-        <div class="container">
+        
+    </div>
+</div>
 
-            <div class="response"></div>
+<div class="row">
+    <div class="portlet">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-cogs"></i>Tabel Gantt Chart Kegiatan
+            </div>
+        </div>
+        <div class="portlet-body">
+            <div class="table-responsive">
+                <div class="container">
 
-            <div id='chart_div'></div>
+                    <div class="response"></div>
+
+                    <div id='chart_div'></div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
-
+<div class="row">
+    <div class="portlet">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-cogs"></i>Kegiatan Yang Mendekati Deadline
+            </div>
+        </div>
+        <div class="portlet-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                ID
+                            </th>
+                            <th>
+                                Nama Kegiatan
+                            </th>
+                            <th>
+                                Tanggal Mulai
+                            </th>
+                            <th>
+                                Tanggal Akhir
+                            </th>
+                            <th>
+                                Presentase
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($deadline as $d)
+                        <tr>
+                            <td>
+                            {{$d->id }}
+                            </td>
+                            <td>
+                            {{$d->kegiatan }}
+                            </td>
+                            <td>
+                            {{$d->mulai }}
+                            </td>
+                            <td>
+                            {{$d->akhir }}
+                            </td>
+                            <td>
+                            {{$d->presentase }}
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- END PAGE CONTENT-->
 <div id="modaldetail" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="classInfo" aria-hidden="true">
     <div class="modal-dialog modal-lg">

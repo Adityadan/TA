@@ -89,17 +89,17 @@
                     <table class="table table-striped table-bordered table-hover table table-striped table-bordered table-hover" id="sample_1">
                         <thead>
                             <tr>
-                                <th>rencana tahun</th>
-                                <th>realisasi tahun</th>
-                                <th>lokasi</th>
-                                <th>blok</th>
-                                <th>pit</th>
-                                <th>cut of grade Ni</th>
-                                <th>bulan</th>
-                                <th>total brutto</th>
-                                <th>recovery penambangan</th>
-                                <th>total nett</th>
-                                <th>kode tambang</th>
+                                <th>Rencana Tahun</th>
+                                <th>Realisasi Tahun</th>
+                                <th>Lokasi</th>
+                                <th>Blok</th>
+                                <th>Pit</th>
+                                <th>Cut Of Grade Ni</th>
+                                <th>Bulan</th>
+                                <th>Total Brutto</th>
+                                <th>Recovery Penambangan</th>
+                                <th>Total Nett</th>
+                                <th>Kode Tambang</th>
                                 <th>Opsi Data</th>
                             </tr>
                         </thead>
@@ -146,9 +146,9 @@
                                 </td> -->
                                 
                                 <td>
-                                    <a href="{{url('penggalihans/'.$d->id.'/edit')}}" class="btn btn-warning">edit</a>
+                                    <!-- <a href="{{url('penggalihans/'.$d->id.'/edit')}}" class="btn btn-warning">edit</a> -->
                                     <a href="#modaledit{{ $d->id }}" class="btn btn-info" data-toggle="modal">
-                                        edit modal
+                                        edit
                                     </a>
                                     <br><br>
                                     <form method="POST" action="{{ url('penggalihans/'.$d->id)}}">
