@@ -12,10 +12,30 @@
             <i class="fa fa-angle-right"></i>
         </li>
         <li>
-            <a href="#">Data Penggalihan Bijih</a>
+            <a href="#">Data Penggalian Bijih</a>
         </li>
     </ul>
 </div>
+<form enctype="multipart/form-data" method="GET" action="{{ route('penggalihan.filter') }}">
+    @csrf
+    <div class="form-group row">
+        <label for="tambang_id" class="col-sm-2 col-form-label">Tambang ID</label>
+        <div class="col-sm-10">
+            <select class="form-control" name="tambang_id" id="tambang_id">
+                @foreach($data_tambang as $d)
+                <option value="{{$d->id}}">
+                    {{$d->nama}}
+                </option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">
+            Tampilkan
+        </button>
+    </div>
+</form>
 <div class="row stats-overview-cont">
     <div class="col-md-2 col-sm-4">
         <div class="stats-overview stat-block">
@@ -79,14 +99,20 @@
                         {{session('eror')}}
                     </div>
                     @endif
-                    <a href="#modalladd" class="btn btn-primary" data-toggle="modal">
+
+                    @if($status=="isi")
+                    <button href="#modalladd" class="btn btn-primary" data-toggle="modal">
                         Tambah Data penggalihan bijih
-                    </a>
-                    <hr>
-                    <p>
-                    </p>
+                    </button>
+                    @endif
+                    
+                    @if($status=="kosong")
+                    <div class="alert alert-warning">
+                        ISI DATA PENGUPASAN TERLEBIH DAHULU !!!
+                    </div>
+                    @endif
                     <h2>Data Penggalihan Bijih</h2>
-                    <table class="table table-striped table-bordered table-hover table table-striped table-bordered table-hover" id="sample_1">
+                    <table id="" class="table table-bordered table-striped table-earning dataTable">
                         <thead>
                             <tr>
                                 <th>Rencana Tahun</th>
@@ -144,7 +170,7 @@
                                         Detail
                                     </a>
                                 </td> -->
-                                
+
                                 <td>
                                     <!-- <a href="{{url('penggalihans/'.$d->id.'/edit')}}" class="btn btn-warning">edit</a> -->
                                     <a href="#modaledit{{ $d->id }}" class="btn btn-info" data-toggle="modal">
@@ -158,7 +184,7 @@
                                     return false;" />
                                     </form>
                                 </td>
-                                
+
                             </tr>
 
                             <!-- Modal Detail -->

@@ -19,7 +19,8 @@ class KaryawanController extends Controller
         $data = Karyawan::all();
         $data_tambang = Tambang::all();
         $data_rencana = RencanaKegiatan::all();
-        return view('karyawan.index', compact('data', 'data_tambang', 'data_rencana'));
+        $status = "kosong";
+        return view('karyawan.index', compact('data', 'data_tambang', 'data_rencana','status'));
     }
 
     /**
@@ -130,5 +131,14 @@ class KaryawanController extends Controller
             $msg = 'gagal hapus data karyawans';
             return redirect()->route('karyawans.index')->with('eror', $msg);
         }
+    }
+    public function filter(Request $request)
+    {
+        $id=$request->get("tambang_id");
+        $data = Karyawan::where('tambang_id',$id)->orderBy("id")->get();
+        $data_rencana = RencanaKegiatan::all();
+        $data_tambang = Tambang::all();
+        $status = "isi";
+        return view('karyawan.index', compact('data', 'data_tambang', 'data_rencana','status'));
     }
 }

@@ -21,7 +21,8 @@ class PengupasanTanahPucukController extends Controller
         $total_ton = DB::table('pengupasan_tanahpucuk')->sum('jumlah_ton');
         $data = PengupasanTanahPucuk::all();
         $data_tambang = Tambang::all();
-        return view('pengupasan.index', compact('total_bcm', 'total_ton', 'data', 'data_tambang'));
+        $status = "kosong";
+        return view('pengupasan.index', compact('status','total_bcm', 'total_ton', 'data', 'data_tambang'));
     }
 
     /**
@@ -45,7 +46,6 @@ class PengupasanTanahPucukController extends Controller
     {
 
 
-        try {
             $data = new PengupasanTanahPucuk();
             $data->tahun_rencana = $request->get('TahunRencana');
             $data->tahun_realisasi = $request->get('TahunRealisasi');
@@ -64,10 +64,7 @@ class PengupasanTanahPucukController extends Controller
             $data->tambang_id = $request->get('Tambang_id');
             $data->save();
             return redirect()->route('pengupasans.index')->with('status', 'Data Pengupasan Tanah Pucuk berhasil ditambahkan');
-        } catch (\PDOException $e) {
-            $msg = 'gagal menambah data Pengupasan Tanah Pucuk';
-            return redirect()->route('pengupasans.index')->with('eror', $msg);
-        }
+        
     }
 
     /**
@@ -143,5 +140,16 @@ class PengupasanTanahPucukController extends Controller
             $msg = 'gagal hapus data Pengupasan Tanah Pucuk';
             return redirect()->route('pengupasans.index')->with('eror', $msg);
         }
+    }
+
+    public function filter(Request $request)
+    {
+        $total_bcm = DB::table('pengupasan_tanahpucuk')->sum('jumlah_bcm');
+        $total_ton = DB::table('pengupasan_tanahpucuk')->sum('jumlah_ton');
+        $id=$request->get("tambang_id");
+        $data = PengupasanTanahPucuk::where('tambang_id',$id)->orderBy("id")->get();
+        $data_tambang = Tambang::all();
+        $status = "isi";
+        return view('pengupasan.index', compact('status','total_bcm', 'total_ton', 'data', 'data_tambang'));
     }
 }

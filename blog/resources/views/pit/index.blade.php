@@ -12,10 +12,30 @@
             <i class="fa fa-angle-right"></i>
         </li>
         <li>
-            <a href="#">Data Pengankutan Pit Menuju Washing Plant</a>
+            <a href="#">Data Pengangkutan Pit Menuju Washing Plant</a>
         </li>
     </ul>
 </div>
+<form enctype="multipart/form-data" method="GET" action="{{ route('pit.filter') }}">
+    @csrf
+    <div class="form-group row">
+        <label for="tambang_id" class="col-sm-2 col-form-label">Tambang ID</label>
+        <div class="col-sm-10">
+            <select class="form-control" name="tambang_id" id="tambang_id">
+                @foreach($data_tambang as $d)
+                <option value="{{$d->id}}">
+                    {{$d->nama}}
+                </option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">
+            Tampilkan
+        </button>
+    </div>
+</form>
 <div class="content">
     <div class="row">
         <div class="col-md-12">
@@ -42,14 +62,19 @@
                     </div>
                     @endif
 
-                    <a href="#modalladd" class="btn btn-primary" data-toggle="modal">
+                    @if($status=="isi")
+                    <button href="#modalladd" class="btn btn-primary" data-toggle="modal">
                         Tambah Data Pengankutan Pit Menuju Washing Plant
-                    </a>
-                    <hr>
-                    <p>
-                    </p>
+                    </button>
+                    @endif
+                    
+                    @if($status=="kosong")
+                    <div class="alert alert-warning">
+                        ISI DATA PENGGALIHAN BIJIH TERLEBIH DAHULU !!!
+                    </div>
+                    @endif
                     <h2>Data Pengankutan Pit Menuju Washing Plant</h2>
-                    <table class="table table-striped table-bordered table-hover table table-striped table-bordered table-hover" id="sample_1">
+                    <table id="" class="table table-bordered table-striped table-earning dataTable">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -471,4 +496,5 @@
         TableManaged.init();
     });
 </script>
+
 @endsection

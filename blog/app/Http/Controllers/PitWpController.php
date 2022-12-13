@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\AlatBerat;
+use App\PenggalihanBijih;
 use App\PitWp;
 use App\Tambang;
 use Illuminate\Http\Request;
@@ -16,10 +17,22 @@ class PitWpController extends Controller
      */
     public function index()
     {
+        $cek = PenggalihanBijih::all();
+        
+        $status="";
+        
+        if( ! $cek->isEmpty() )
+        {
+            $status = "isi";
+        }else
+        {
+            $status="kosong";
+        }
         $data = PitWp::all();
         $data_tambang = Tambang::all();
         $data_alat = AlatBerat::all();
-        return view('pit.index', compact('data', 'data_tambang', 'data_alat'));
+        $status1 = "kosong";
+        return view('pit.index', compact('data', 'data_tambang', 'data_alat','status','status1'));
     }
 
     /**
@@ -133,5 +146,25 @@ class PitWpController extends Controller
             $msg = 'gagal hapus data pengangkutan Pit menuju Washing Plant';
             return redirect()->route('pits.index')->with('eror', $msg);
         }
+    }
+    public function filter(Request $request)
+    {
+        $cek = PenggalihanBijih::all();
+        
+        $status="";
+        
+        if( ! $cek->isEmpty() )
+        {
+            $status = "isi";
+        }else
+        {
+            $status="kosong";
+        }
+        $id=$request->get("tambang_id");
+        $data = PitWp::where('tambang_id',$id)->orderBy("id")->get();
+        $data_tambang = Tambang::all();
+        $data_alat = AlatBerat::all();
+        $status1 = "isi";
+        return view('pit.index', compact('data', 'data_tambang', 'data_alat','status','status1'));
     }
 }

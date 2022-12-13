@@ -32,6 +32,18 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('ports', 'WpPortController');
     Route::resource('rencanas', 'RencanaKegiatanController');
     Route::resource('laporans', 'LaporanController');
+    
+    Route::get('tambang/filter','TambangController@filter')->name('tambang.filter');
+    Route::get('bauksit/filter','BauksitController@filter')->name('bauksit.filter');
+    Route::get('rencana/filter','RencanaKegiatanController@filter')->name('rencana.filter');
+    Route::get('alat/filter','AlatBeratController@filter')->name('alat.filter');
+    Route::get('pengupasan/filter','PengupasanTanahPucukController@filter')->name('pengupasan.filter');
+    Route::get('penggalihan/filter','PenggalihanBijihController@filter')->name('penggalihan.filter');
+    Route::get('pit/filter','PitWPController@filter')->name('pit.filter');
+    Route::get('port/filter','WpPortController@filter')->name('port.filter');
+    Route::get('karyawan/filter','KaryawanController@filter')->name('karyawan.filter');
+    Route::get('laporan/filter','LaporanController@filter')->name('laporan.filter');
+
 });
 
 

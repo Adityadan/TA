@@ -31,13 +31,34 @@
     </div>
     @endif
     <a href="#modaldetail" class="btn btn-primary" data-toggle="modal">
-        detail rencana kegiatan
+        Detail List Rencana Kegiatan
     </a>
-    <div class="col-md-12">
-        
-    </div>
+    <a href="{{route('rencanas.create')}}" class="btn btn-primary">
+            + Tambah Data Rencana Kegiatan
+          </a>
+    <form enctype="multipart/form-data" method="GET" action="{{ route('rencana.filter') }}">
+        @csrf
+        <div class="form-group row">
+            <label for="tambang_id" class="col-sm-2 col-form-label">Tambang ID</label>
+            <div class="col-sm-10">
+                <select class="form-control" name="tambang_id" id="tambang_id">
+                    @foreach($data_tambang as $d)
+                    <option value="{{$d->id}}">
+                        {{$d->nama}}
+                    </option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">
+                Tampilkan 
+            </button>
+        </div>
+    </form>
 </div>
 
+@if($status=="isi")
 <div class="row">
     <div class="portlet">
         <div class="portlet-title">
@@ -48,16 +69,15 @@
         <div class="portlet-body">
             <div class="table-responsive">
                 <div class="container">
-
-                    <div class="response"></div>
-
                     <div id='chart_div'></div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+@endif
 
+@if($status=="isi")
 <div class="row">
     <div class="portlet">
         <div class="portlet-title">
@@ -88,22 +108,22 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach($deadline as $d)
+                        @foreach($deadline as $d)
                         <tr>
                             <td>
-                            {{$d->id }}
+                                {{$d->tambang_id }}
                             </td>
                             <td>
-                            {{$d->kegiatan }}
+                                {{$d->kegiatan }}
                             </td>
                             <td>
-                            {{$d->mulai }}
+                                {{$d->mulai }}
                             </td>
                             <td>
-                            {{$d->akhir }}
+                                {{$d->akhir }}
                             </td>
                             <td>
-                            {{$d->presentase }}
+                                {{$d->presentase }}
                             </td>
                         </tr>
                         @endforeach
@@ -113,7 +133,12 @@
         </div>
     </div>
 </div>
-<!-- END PAGE CONTENT-->
+@else
+<div class="alert alert-danger">
+        DATA RENCANA KEGIATAN TIDAK ADA
+    </div>
+@endif
+
 <div id="modaldetail" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="classInfo" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -124,9 +149,9 @@
                     Detail Rencana Kegiatan
                 </h4>
             </div>
-            <a href="#modalladd" class="btn btn-primary" data-toggle="modal">
+            <!-- <a href="#modalladd" class="btn btn-primary" data-toggle="modal">
                 Tambah Data rencana kegiatan
-            </a>
+            </a> -->
             <div class="modal-body">
                 <table id="classTable" class="table table-bordered">
                     <thead>
@@ -196,7 +221,6 @@
                                                             <input type="text" value="{{$d->kegiatan}}" name="kegiatan" class="form-control" id="kegiatan" required>
                                                         </div>
                                                     </div>
-
                                                     <div class="form-group row">
                                                         <label for="musim" class="col-sm-2 col-form-label">musim</label>
                                                         <div class="col-sm-10">
@@ -277,7 +301,6 @@
                             <input type="text" value="" name="kegiatan" class="form-control" id="kegiatan" required>
                         </div>
                     </div>
-
                     <div class="form-group row">
                         <label for="musim" class="col-sm-2 col-form-label">musim</label>
                         <div class="col-sm-10">
@@ -288,15 +311,15 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="mulai" class="col-sm-2 col-form-label">mulai</label>
+                        <label for="mulai" class="col-sm-2 col-form-label">Mulai</label>
                         <div class="col-sm-10">
-                            <input type="text" value="YYYY,MM,DD" name="mulai" class="form-control" id="mulai" required>
+                            <input type="text" name="mulai" class="date form-control" id="mulai" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="akhir" class="col-sm-2 col-form-label">Akhir</label>
                         <div class="col-sm-10">
-                            <input type="text" value="YYYY,MM,DD" name="akhir" class="form-control" id="akhir" required>
+                            <input type="text" name="akhir" class="date form-control" id="akhir" required>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -332,7 +355,6 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
-
 
 
 @endsection
@@ -379,4 +401,25 @@
         chart.draw(data, options);
     }
 </script>
+<!-- <script>
+    $(document).ready(function() {
+        $("#from-datepicker").datepicker({
+            format: 'yyyy,mm,dd'
+        });
+        $("#from-datepicker").on("change", function() {
+            var fromdate = $(this).val();
+        });
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $("#from-datepicker1").datepicker({
+            format: 'yyyy,mm,dd'
+        });
+        $("#from-datepicker").on("change", function() {
+            var fromdate = $(this).val();
+        });
+    });
+</script> -->
+
 @endsection

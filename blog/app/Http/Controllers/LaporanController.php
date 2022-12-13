@@ -17,7 +17,8 @@ class LaporanController extends Controller
     {
         $data_user = User::all();
         $data_laporan = Laporan::all();
-        return view('laporan.index', compact('data_user', 'data_laporan'));
+        $status = "kosong";
+        return view('laporan.index', compact('data_user', 'data_laporan','status'));
     }
 
     /**

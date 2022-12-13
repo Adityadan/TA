@@ -16,6 +16,26 @@
         </li>
     </ul>
 </div>
+<form enctype="multipart/form-data" method="GET" action="{{ route('bauksit.filter') }}">
+    @csrf
+    <div class="form-group row">
+        <label for="tambang_id" class="col-sm-2 col-form-label">Tambang ID</label>
+        <div class="col-sm-10">
+            <select class="form-control" name="tambang_id" id="tambang_id">
+                @foreach($data_tambang as $d)
+                <option value="{{$d->id}}">
+                    {{$d->nama}}
+                </option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">
+            Tampilkan
+        </button>
+    </div>
+</form>
 <div class="content">
     <div class="row">
         <div class="col-md-12">
@@ -48,7 +68,7 @@
                     <p>
                     </p>
                     <h2>Data Bauksit</h2>
-                    <table class="ble table-striped table-bordered table-hover table table-striped table-bordered table-hover" id="sample_1">
+                    <table id="" class="table table-bordered table-striped table-earning dataTable">
                         <thead>
                             <tr>
                                 <th>cf</th>

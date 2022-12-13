@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\AlatBerat;
+use App\PitWp;
 use App\Tambang;
 use App\WpPort;
 use Illuminate\Http\Request;
@@ -16,10 +17,23 @@ class WpPortController extends Controller
      */
     public function index()
     {
+        $cek = PitWp::all();
+        
+        $status="";
+        
+        if( ! $cek->isEmpty() )
+        {
+            $status = "isi";
+        }else
+        {
+            $status="kosong";
+        }
+
         $data = WpPort::all();
         $data_alat = AlatBerat::all();
         $data_tambang = Tambang::all();
-        return view('port.index', compact('data_alat','data','data_tambang'));
+        $status1 = "kosong";
+        return view('port.index', compact('data_alat','data','data_tambang','status','status1'));
     }
 
     /**
@@ -133,5 +147,27 @@ class WpPortController extends Controller
             $msg = 'gagal hapus data pengantaran washing plant menuju port';
             return redirect()->route('ports.index')->with('eror', $msg);
         }
+    }
+
+    public function filter(Request $request)
+    {
+        $cek = PitWp::all();
+        
+        $status="";
+        
+        if( ! $cek->isEmpty() )
+        {
+            $status = "isi";
+        }else
+        {
+            $status="kosong";
+        }
+
+        $id=$request->get("tambang_id");
+        $data = WpPort::where('tambang_id',$id)->orderBy("id")->get();
+        $data_alat = AlatBerat::all();
+        $data_tambang = Tambang::all();
+        $status1 = "isi";
+        return view('port.index', compact('data_alat','data','data_tambang','status','status1'));
     }
 }

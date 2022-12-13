@@ -17,7 +17,8 @@ class BauksitController extends Controller
     {
         $data = Bauksit::all();
         $data_tambang = Tambang::all();
-        return view('bauksit.index', compact('data', 'data_tambang'));
+        $status = "kosong";
+        return view('bauksit.index', compact('data', 'data_tambang','status'));
     }
 
     /**
@@ -130,5 +131,13 @@ class BauksitController extends Controller
             $msg = 'gagal hapus data bauksit';
             return redirect()->route('bauksits.index')->with('eror', $msg);
         }
+    }
+    public function filter(Request $request)
+    {
+        $id=$request->get("tambang_id");
+        $data = Bauksit::where('tambang_id',$id)->orderBy("id")->get();
+        $data_tambang = Tambang::all();
+        $status = "isi";
+        return view('bauksit.index', compact('data', 'data_tambang','status'));
     }
 }

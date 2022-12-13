@@ -42,13 +42,14 @@
                     <hr>
                     <p>
                     </p>
-                    <table class="table table-striped table-bordered table-hover table table-striped table-bordered table-hover" id="sample_1">
+                    <table id="" class="table table-bordered table-striped table-earning dataTable">
                         <thead>
                             <tr>
-                                <th>nama pertambangan</th>
-                                <th>lokasi</th>
-                                <th>status</th>
+                                <th>Nama Pertambangan</th>
+                                <th>Lokasi</th>
+                                <th>Status</th>
                                 <th>Tanggal</th>
+                                <th>Detail Data</th>
                                 <th>Opsi Data</th>
                             </tr>
                         </thead>

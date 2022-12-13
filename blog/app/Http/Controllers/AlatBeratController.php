@@ -19,7 +19,8 @@ class AlatBeratController extends Controller
         $data = AlatBerat::all();
         $data_tambang = Tambang::all();
         $data_rencana = RencanaKegiatan::all();
-        return view('alat.index', compact('data', 'data_tambang', 'data_rencana'));
+        $status="kosong";
+        return view('alat.index', compact('data', 'data_tambang', 'data_rencana','status'));
     }
 
     /**
@@ -125,5 +126,14 @@ class AlatBeratController extends Controller
             $msg = 'gagal hapus data alat berat';
             return redirect()->route('alats.index')->with('eror', $msg);
         }
+    }
+    public function filter(Request $request)
+    {
+        $id=$request->get("tambang_id");
+        $data = AlatBerat::where('tambang_id',$id)->orderBy("id")->get();
+        $data_tambang = Tambang::all();
+        $data_rencana = RencanaKegiatan::all();
+        $status = "isi";
+        return view('alat.index', compact('data', 'data_tambang', 'data_rencana','status'));
     }
 }

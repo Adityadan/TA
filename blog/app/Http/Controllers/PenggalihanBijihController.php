@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\PenggalihanBijih;
+use App\PengupasanTanahPucuk;
 use App\Tambang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,12 +17,24 @@ class PenggalihanBijihController extends Controller
      */
     public function index()
     {
+        $cek = PengupasanTanahPucuk::all();
+        
+        $status="";
+        
+        if( ! $cek->isEmpty() )
+        {
+            $status = "isi";
+        }else
+        {
+            $status="kosong";
+        }
         $total_brutto = DB::table('penggalihan_bijih')->sum('total_brutto');
         $maxrecovery = DB::table('penggalihan_bijih')->max('recovery_pertambangan');
         $total_nett = DB::table('penggalihan_bijih')->sum('total_nett');
         $data = PenggalihanBijih::all();
         $data_tambang = Tambang::all();
-        return view('penggalihan.index', compact('total_brutto', 'maxrecovery', 'total_nett', 'data', 'data_tambang'));
+        $status1 = "kosong";
+        return view('penggalihan.index', compact('total_brutto', 'maxrecovery', 'total_nett', 'data', 'data_tambang','status','status1'));
     }
 
     /**
@@ -133,4 +146,29 @@ class PenggalihanBijihController extends Controller
             return redirect()->route('penggalihans.index')->with('eror', $msg);
         }
     }
+
+    public function filter(Request $request)
+    {
+        $cek = PengupasanTanahPucuk::all();
+        
+        $status="";
+        
+        if( ! $cek->isEmpty() )
+        {
+            $status = "isi";
+        }else
+        {
+            $status="kosong";
+        }
+        $total_brutto = DB::table('penggalihan_bijih')->sum('total_brutto');
+        $maxrecovery = DB::table('penggalihan_bijih')->max('recovery_pertambangan');
+        $total_nett = DB::table('penggalihan_bijih')->sum('total_nett');
+        $id=$request->get("tambang_id");
+        $data = PengupasanTanahPucuk::where('tambang_id',$id)->orderBy("id")->get();
+        $data_tambang = Tambang::all();
+        $status1 = "isi";
+        return view('penggalihan.index', compact('total_brutto', 'maxrecovery', 'total_nett', 'data', 'data_tambang','status','status1'));
+    }
+
+    
 }

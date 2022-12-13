@@ -63,6 +63,13 @@
 	<link rel="apple-touch-icon" href="{{ asset('logo.PNG') }}">
 	<link rel="manifest" href="{{ asset('/manifest.json') }}">
 
+	<!-- DataTables -->
+	<link href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css%22%3E" />
+	<link href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap4.min.css%22%3E" />
+
+	<!-- DatePicker -->
+	<!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">   -->
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">   -->
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
@@ -74,7 +81,7 @@
 		<div class="header-inner">
 			<!-- BEGIN LOGO -->
 			<div class="page-logo">
-					<img src="{{ asset('assets/img/logo1.png')}}" alt="logo" />
+				<img src="{{ asset('assets/img/logo1.png')}}" alt="logo" />
 			</div>
 			<!-- END LOGO -->
 			<!-- BEGIN RESPONSIVE MENU TOGGLER -->
@@ -602,32 +609,40 @@
 
 	<script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
 
+	<!-- Datatables -->
+
+	<script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js%22%3E"></script>
+	<script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap4.min.js%22%3E"></script>
+
+	<!-- DatePicker -->
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script> -->
+	<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script> -->
+    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"> </script>   -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"> </script>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"> </script>   -->
 	<!-- BEGIN PAGE LEVEL SCRIPTS -->
 
-	<!-- <script>
-		jQuery(document).ready(function () {
+	<!-- END CORE PLUGINS -->
+
+	<script>
+		jQuery(document).ready(function() {
+			// initiate layout and plugins
 			App.init();
-			TableManaged.init();
 		});
 	</script>
 	<script>
-		jQuery(document).ready(function() {
-			// initiate layout and plugins
-			App.init();
-			Calendar.init();
-		});
-	</script> -->
-
-	<!-- END CORE PLUGINS -->
-	<script>
-		jQuery(document).ready(function() {
-			// initiate layout and plugins
-			App.init();
+		$(document).ready(function() {
+			$('.dataTable').DataTable({
+				order: [
+					[0, 'desc']
+				]
+			});
 		});
 	</script>
 	@yield('tempat_script')
-	<!-- script calendar -->
-	
+
 </body>
 <!-- END BODY -->
 

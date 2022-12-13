@@ -16,6 +16,26 @@
         </li>
     </ul>
 </div>
+<form enctype="multipart/form-data" method="GET" action="{{ route('karyawan.filter') }}">
+    @csrf
+    <div class="form-group row">
+        <label for="tambang_id" class="col-sm-2 col-form-label">Tambang ID</label>
+        <div class="col-sm-10">
+            <select class="form-control" name="tambang_id" id="tambang_id">
+                @foreach($data_tambang as $d)
+                <option value="{{$d->id}}">
+                    {{$d->nama}}
+                </option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">
+            Tampilkan
+        </button>
+    </div>
+</form>
 <div class="content">
     <div class="row">
         <div class="col-md-12">
@@ -48,7 +68,7 @@
                     <p>
                     </p>
                     <h2>Data Karyawan</h2>
-                    <table class="table table-striped table-bordered table-hover table table-striped table-bordered table-hover" id="sample_1">
+                    <table id="" class="table table-bordered table-striped table-earning dataTable">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -193,7 +213,7 @@
                                 </div>
                             </div>
 
-                            
+
                             <!-- modal edit -->
                             <div class="modal fade" id="modaledit{{ $d->id }}" tabindex="-1" role="basic" aria-hidden="true">
                                 <div class="modal-dialog">
@@ -201,92 +221,92 @@
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                                             <h4 class="modal-title">form Data Karyawan
-                                        <div class="modal-body">
-                                            <form method="POST" action="{{ route('karyawans.update',$d->id) }}">
-                                                @csrf
-                                                @method("PUT")
-                                                <div class="form-group row">
-                                                    <label for="Nama" class="col-sm-2 col-form-label">nama</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="text" value="{{$d->nama}}" name="Nama" class="form-control" id="Nama" required>
-                                                    </div>
+                                                <div class="modal-body">
+                                                    <form method="POST" action="{{ route('karyawans.update',$d->id) }}">
+                                                        @csrf
+                                                        @method("PUT")
+                                                        <div class="form-group row">
+                                                            <label for="Nama" class="col-sm-2 col-form-label">nama</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" value="{{$d->nama}}" name="Nama" class="form-control" id="Nama" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="Devisi" class="col-sm-2 col-form-label">devisi</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" value="{{$d->devisi}}" name="Devisi" class="form-control" id="Devisi" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="Jabatan" class="col-sm-2 col-form-label">jabatan</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" value="{{$d->jabatan}}" name="Jabatan" class="form-control" id="Jabatan" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="Nik" class="col-sm-2 col-form-label">nik</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" value="{{$d->nik}}" name="Nik" class="form-control" id="Nik" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="Tanggallahir" class="col-sm-2 col-form-label">Tanggal Lahir</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="date" value="{{$d->tanggallahir}}" name="Tanggallahir" class="form-control" id="Tanggallahir" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="jeniskelamin" class="col-sm-2 col-form-label">Jenis Kelamin</label>
+                                                            <div class="col-sm-10">
+                                                                <select select class="form-control" name="jeniskelamin" id="jeniskelamin" required>
+                                                                    <option value="laki">Laki Laki</option>
+                                                                    <option value="perempuan">Perempuan</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="Alamat" class="col-sm-2 col-form-label">alamat</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" value="{{$d->alamat}}" name="Alamat" class="form-control" id="Alamat" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="No_telp" class="col-sm-2 col-form-label">nomor telepon</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" value="{{$d->no_telp}}" name="No_telp" class="form-control" id="No_telp" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="tambang_id" class="col-sm-2 col-form-label">Kode Pertambangan : </label>
+                                                            <div class="col-sm-10">
+                                                                <select class="form-control" name="tambang_id" id="tambang_id" required>
+                                                                    @foreach($data_tambang as $d)
+                                                                    <option value="{{$d->id}}">{{$d->id}}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="rencana_kegiatan_id" class="col-sm-2 col-form-label">Kegiatan Pertambangan</label>
+                                                            <div class="col-sm-10">
+                                                                <select class="form-control" name="rencana_kegiatan_id" id="rencana_kegiatan_id" required>
+                                                                    @foreach($data_rencana as $d)
+                                                                    <option value="{{$d->id}}">{{$d->kegiatan}}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-10">
+                                                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
                                                 </div>
-                                                <div class="form-group row">
-                                                    <label for="Devisi" class="col-sm-2 col-form-label">devisi</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="text" value="{{$d->devisi}}" name="Devisi" class="form-control" id="Devisi" required>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="Jabatan" class="col-sm-2 col-form-label">jabatan</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="text" value="{{$d->jabatan}}" name="Jabatan" class="form-control" id="Jabatan" required>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="Nik" class="col-sm-2 col-form-label">nik</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="text" value="{{$d->nik}}" name="Nik" class="form-control" id="Nik" required>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="Tanggallahir" class="col-sm-2 col-form-label">Tanggal Lahir</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="date" value="{{$d->tanggallahir}}" name="Tanggallahir" class="form-control" id="Tanggallahir" required>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="jeniskelamin" class="col-sm-2 col-form-label">Jenis Kelamin</label>
-                                                    <div class="col-sm-10">
-                                                        <select select class="form-control" name="jeniskelamin" id="jeniskelamin" required>
-                                                            <option value="laki">Laki Laki</option>
-                                                            <option value="perempuan">Perempuan</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="Alamat" class="col-sm-2 col-form-label">alamat</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="text" value="{{$d->alamat}}" name="Alamat" class="form-control" id="Alamat" required>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="No_telp" class="col-sm-2 col-form-label">nomor telepon</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="text" value="{{$d->no_telp}}" name="No_telp" class="form-control" id="No_telp" required>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="tambang_id" class="col-sm-2 col-form-label">Kode Pertambangan : </label>
-                                                    <div class="col-sm-10">
-                                                        <select class="form-control" name="tambang_id" id="tambang_id" required>
-                                                            @foreach($data_tambang as $d)
-                                                            <option value="{{$d->id}}">{{$d->id}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="rencana_kegiatan_id" class="col-sm-2 col-form-label">Kegiatan Pertambangan</label>
-                                                    <div class="col-sm-10">
-                                                        <select class="form-control" name="rencana_kegiatan_id" id="rencana_kegiatan_id" required>
-                                                            @foreach($data_rencana as $d)
-                                                            <option value="{{$d->id}}">{{$d->kegiatan}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <div class="col-sm-10">
-                                                        <button type="submit" class="btn btn-primary">Simpan</button>
-                                                    </div>
-                                                </div>
-                                            </form>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            @endforeach
+                                @endforeach
                         </tbody>
                     </table>
                 </div>

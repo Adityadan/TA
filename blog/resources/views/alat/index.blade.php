@@ -15,6 +15,26 @@
             <a href="#">Alat Berat</a>
         </li>
     </ul>
+    <form enctype="multipart/form-data" method="GET" action="{{ route('alat.filter') }}">
+        @csrf
+        <div class="form-group row">
+            <label for="tambang_id" class="col-sm-2 col-form-label">Tambang ID</label>
+            <div class="col-sm-10">
+                <select class="form-control" name="tambang_id" id="tambang_id">
+                    @foreach($data_tambang as $d)
+                    <option value="{{$d->id}}">
+                        {{$d->nama}}
+                    </option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">
+                Tampilkan 
+            </button>
+        </div>
+    </form>
 </div>
 <div class="row">
     <div class="col-md-12">
@@ -47,14 +67,15 @@
                         </div>
                     </div>
                 </div>
-                <table class="table table-striped table-bordered table-hover table table-striped table-bordered table-hover" id="sample_1">
+                <table id="" class="table table-bordered table-striped table-earning dataTable">
                     <thead>
                         <tr>
-                            <th>fungsi</th>
-                            <th>merk</th>
-                            <th>jenis</th>
-                            <th>tipe</th>
-                            <th>jumlah</th>
+                            <th>Fungsi</th>
+                            <th>Merk</th>
+                            <th>Jenis</th>
+                            <th>Tipe</th>
+                            <th>Jumlah</th>
+                            <th>Kode Pertambangan</th>
                             <th>Opsi Data</th>
                         </tr>
                     </thead>
@@ -77,6 +98,9 @@
                                 {{$d->jumlah}} unit
                             </td>
                             <td>
+                                {{$d->tambang_id}}
+                            </td>
+                            <td>
                                 <a href="{{route('alats.edit',$d->id)}}" class="btn btn-warning">Edit</a>
                                 <br><br>
                                 <form method="POST" action="{{ url('alats/'.$d->id)}}">
@@ -95,7 +119,6 @@
         <!-- END EXAMPLE TABLE PORTLET-->
     </div>
 </div>
-
 <!-- Modal Add -->
 <div class="modal fade" id="modalladd" tabindex="-1" role="basic" aria-hidden="true">
     <div class="modal-dialog">
